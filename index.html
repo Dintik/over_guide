@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Справочник по картам Overkings</title>
+<meta name="description" content="Неофициальный справочник по картам Overkings: локации с боссами по регионам, их сила относительно соседей и эффекты монстров.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="#">Справочник <span>Overkings</span></a>
+  <nav class="tabs" id="tabs" aria-label="Карты"></nav>
+</header>
+
+<main id="overview" class="overview" hidden>
+  <section class="intro">
+    <h1>Локации с боссами</h1>
+    <p>Выберите карту, чтобы увидеть, где находятся локации с боссами, какие из них сильнее или слабее
+      в своём регионе и какие эффекты накладывают монстры. Карты идут от слабых к сильным.</p>
+  </section>
+  <div class="cards" id="cards"></div>
+  <section class="legend-block">
+    <h2>Как читать справочник</h2>
+    <dl class="terms">
+      <dt>Цвет отметки</dt><dd>Сила региона среди регионов этой карты: зелёный — слабее, жёлтый — средний, красный — сильнее.</dd>
+      <dt>▲ ▼ на отметке</dt><dd>Локация сильнее (▲) или слабее (▼) большинства локаций своего региона. Без стрелки — как большинство.</dd>
+      <dt>Эффекты</dt><dd>Что делают монстры: оглушение, замедление, превращение в волка, паника, ослепление, очарование, отбрасывание, атаки издалека, летающие монстры.</dd>
+      <dt>☠</dt><dd>Мегабосс: бой для большой группы сильных героев.</dd>
+    </dl>
+  </section>
+</main>
+
+<main id="mapview" class="mapview" hidden>
+  <section class="map-wrap" aria-label="Карта">
+    <svg id="map" class="map" role="img"></svg>
+    <div class="map-ui">
+      <button type="button" data-zoom="in" aria-label="Приблизить">+</button>
+      <button type="button" data-zoom="out" aria-label="Отдалить">−</button>
+      <button type="button" data-zoom="reset" aria-label="Показать всю карту">⤢</button>
+    </div>
+    <div class="legend">
+      <div class="keys">
+        <span><i class="sw weak"></i>слабый регион</span>
+        <span><i class="sw middle"></i>средний</span>
+        <span><i class="sw strong"></i>сильный</span>
+        <span>▲▼ сильнее / слабее соседей</span>
+      </div>
+    </div>
+  </section>
+
+  <aside class="side" id="side">
+    <div class="side-list" id="listPane">
+      <div class="filters">
+        <input type="search" id="q" placeholder="Локация, босс или монстр" aria-label="Поиск">
+        <select id="region" aria-label="Регион"></select>
+        <div class="fx-filter">
+          <div class="fx-title">Эффекты <span class="note">нажмите: только с ним, ещё раз: без него</span></div>
+          <div class="chips" id="chips"></div>
+        </div>
+        <div class="count" id="count"></div>
+      </div>
+      <div class="list" id="list"></div>
+    </div>
+    <div class="side-detail" id="detailPane" hidden>
+      <button type="button" class="back" id="back">← К списку</button>
+      <article id="detail"></article>
+    </div>
+  </aside>
+</main>
+
+<footer class="foot">Неофициальный справочник от игроков для игроков. Эффекты отмечены по опыту и могут быть неполными.</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

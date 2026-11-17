@@ -1,0 +1,64 @@
+{
+ "maps": [
+  {
+   "id": "bervil",
+   "name": "Бервиль",
+   "locations": 6,
+   "regions": 2
+  },
+  {
+   "id": "konhobar",
+   "name": "Конхобар",
+   "locations": 38,
+   "regions": 5
+  },
+  {
+   "id": "metanoyya",
+   "name": "Метанойя",
+   "locations": 25,
+   "regions": 4
+  },
+  {
+   "id": "panfobion",
+   "name": "Панфобион",
+   "locations": 31,
+   "regions": 4
+  },
+  {
+   "id": "sorian",
+   "name": "Сориан",
+   "locations": 46,
+   "regions": 3
+  },
+  {
+   "id": "ortre",
+   "name": "Ортрэ",
+   "locations": 51,
+   "regions": 3
+  },
+  {
+   "id": "almerik",
+   "name": "Альмерик",
+   "locations": 46,
+   "regions": 5
+  },
+  {
+   "id": "vergeland",
+   "name": "Вергеланд",
+   "locations": 21,
+   "regions": 5
+  },
+  {
+   "id": "haranger-ford",
+   "name": "Харангер-фьорд",
+   "locations": 25,
+   "regions": 4
+  },
+  {
+   "id": "heymskringla",
+   "name": "Хеймскрингла",
+   "locations": 29,
+   "regions": 4
+  }
+ ]
+}
