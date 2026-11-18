@@ -179,9 +179,12 @@ function drawPoint(g, p) {
   el('circle', { class: 'ring', r: 19 }, g);
   el('circle', { class: 'dot', r: 14 }, g);
   if (here.length) {
+    // The nicks one under another beside the point (four at most, then «+N»), centred on it.
     const names = here.map(m => m.nick);
-    const label = names.length > 2 ? `${names.slice(0, 2).join(', ')} +${names.length - 2}` : names.join(', ');
-    el('text', { class: 'tag', x: 20, y: 0 }, g).textContent = label;
+    const lines = names.length > 4 ? [...names.slice(0, 4), `+${names.length - 4}`] : names;
+    const step = 16, top = -((lines.length - 1) * step) / 2;
+    const text = el('text', { class: 'tag' }, g);
+    lines.forEach((line, i) => { el('tspan', { x: 20, y: top + i * step }, text).textContent = line; });
   }
 }
 
