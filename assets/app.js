@@ -15,6 +15,7 @@ const LOC_TEXT = {
   equal: 'Как большинство локаций региона', only: 'Единственная локация с боссом в регионе',
 };
 const ARROW = { weak: '▼', strong: '▲' };
+const SKULL = '\u2620\uFE0E';   // ☠ drawn as text, not as an emoji
 
 const state = { index: [], maps: {}, map: null, selected: null, view: null, full: null, fx: {} };
 
@@ -111,10 +112,12 @@ function drawMap() {
   state.markers = [];
   const layer = el('g', {}, svg);
   for (const l of map.locations) {
-    const g = el('g', { class: `mk r-${state.regionTier[l.region]}`, 'data-id': l.id }, layer);
-    el('circle', { class: 'ring', r: 15 }, g);
-    el('circle', { class: 'dot', r: 11 }, g);
-    const mark = l.mega ? '☠' : ARROW[l.strength] || '';
+    // Grey: nothing known yet about the location's effects.
+    const cls = `mk r-${state.regionTier[l.region]}${l.effects == null ? ' unknown' : ''}${l.mega ? ' mega' : ''}`;
+    const g = el('g', { class: cls, 'data-id': l.id }, layer);
+    el('circle', { class: 'ring', r: l.mega ? 23 : 15 }, g);
+    el('circle', { class: 'dot', r: l.mega ? 19 : 11 }, g);
+    const mark = l.mega ? SKULL : ARROW[l.strength] || '';
     if (mark) el('text', {}, g).textContent = mark;
     g._loc = l;
     state.markers.push(g);
@@ -314,11 +317,12 @@ function renderList() {
     html += `<h4 class="region-head"><i class="sw ${r.strength}"></i>${esc(r.name)} <span>${REGION_TEXT[r.strength]}</span></h4><ul>`;
     html += items.map(l => `
       <li data-id="${l.id}" class="${state.selected === l.id ? 'on' : ''}">
-        <span class="mark s-${l.strength}" title="${LOC_TEXT[l.strength]}">${l.mega ? '☠' : ARROW[l.strength] || '•'}</span>
+        <span class="mark s-${l.strength}${l.mega ? ' mega' : ''}" title="${LOC_TEXT[l.strength]}">${l.mega ? SKULL : ARROW[l.strength] || '•'}</span>
         <div>
           <div class="name">${esc(l.name)}</div>
           <div class="sub">${esc(l.bosses.join(', '))}</div>
-          ${l.effects?.length ? `<div class="badges">${l.effects.map(k => `<span class="badge">${EFFECTS[k]}</span>`).join('')}</div>` : ''}
+          ${l.effects == null ? '<div class="badges"><span class="badge unknown">нет сведений</span></div>'
+            : l.effects.length ? `<div class="badges">${l.effects.map(k => `<span class="badge">${EFFECTS[k]}</span>`).join('')}</div>` : ''}
         </div>
       </li>`).join('');
     html += '</ul>';
