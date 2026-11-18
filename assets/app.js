@@ -378,7 +378,7 @@ function showDetail(l) {
   $('detail').innerHTML = `
     <h2>${esc(l.name)}</h2>
     <div class="where">${esc(state.map.name)} · ${esc(l.region)}</div>
-    ${l.mega ? '<div class="warn">☠ Мегабосс: бой для большой группы сильных героев.</div>' : ''}
+    ${l.mega ? '<div class="warn">☠ Эпические боссы: бой для большой группы сильных героев.</div>' : ''}
     ${l.description ? `<p class="desc">${esc(l.description)}</p>` : ''}
     <div class="stats">
       <div class="stat"><div class="k">Сила на карте</div><div class="v"><i class="sw" style="background:${rankColor(l.rank)}"></i>${rankText(l.rank)} на карте</div></div>
