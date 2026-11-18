@@ -7,7 +7,7 @@ const MAP_W = 1000;   // the map picture in SVG units; locations come in percent
 const EFFECTS = {
   stuns: 'Оглушение', slows: 'Замедление', wolf: 'Превращение в волка', panic: 'Паника',
   blind: 'Ослепление', beguile: 'Очарование', knockbacks: 'Отбрасывание',
-  ranged: 'Атаки издалека', flying: 'Летающие монстры',
+  ranged: 'Атаки издалека',
 };
 const REGION_TEXT = { weak: 'слабый регион карты', middle: 'средний регион карты', strong: 'сильный регион карты' };
 const LOC_TEXT = {
@@ -18,6 +18,7 @@ const ARROW = { weak: '▼', strong: '▲' };
 
 const state = { index: [], maps: {}, map: null, selected: null, view: null, full: null, fx: {} };
 
+const isPhone = () => window.matchMedia('(max-width: 860px)').matches;
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
 async function getJSON(url) {
@@ -45,7 +46,7 @@ async function route() {
     return;
   }
   if (!state.map || state.map.id !== mapId) await openMap(mapId);
-  select(locId, { center: true });
+  select(locId, { reveal: true });
 }
 
 function go(locId) {
@@ -84,6 +85,7 @@ async function openMap(mapId) {
   document.title = `${map.name} — справочник Overkings`;
   state.full = { x: 0, y: 0, w: MAP_W, h: MAP_W * map.ratio };
   state.view = { ...state.full };
+  $('map').style.aspectRatio = `1 / ${map.ratio}`;
   renderRegionSelect();
   drawMap();
   fitView();
@@ -134,13 +136,13 @@ function updateView() {
   }
 }
 
+// The view stays inside the picture: no zooming out past the whole map, no dragging into the dark.
 function clampView(v) {
-  const f = state.full;
-  const w = Math.min(Math.max(v.w, f.w / 12), f.w * 1.2);
-  const h = w * (v.h / v.w);
-  const x = Math.min(Math.max(v.x, f.x - w * 0.5), f.x + f.w - w * 0.5);
-  const y = Math.min(Math.max(v.y, f.y - h * 0.5), f.y + f.h - h * 0.5);
-  return { x, y, w, h };
+  const f = state.full, fit = state.fit || f;
+  const w = Math.min(Math.max(v.w, f.w / 10), fit.w);
+  const h = w * (fit.h / fit.w);
+  const axis = (pos, size, start, total) => size >= total ? start + (total - size) / 2 : Math.min(Math.max(pos, start), start + total - size);
+  return { x: axis(v.x, w, f.x, f.w), y: axis(v.y, h, f.y, f.h), w, h };
 }
 
 function fitView() {
@@ -150,6 +152,7 @@ function fitView() {
   let w = f.w, h = f.w * ratio;
   if (h < f.h) { h = f.h; w = h / ratio; }
   state.view = { x: f.x + (f.w - w) / 2, y: f.y + (f.h - h) / 2, w, h };
+  state.fit = { ...state.view };
   updateView();
 }
 
@@ -165,11 +168,11 @@ function toMap(clientX, clientY) {
   return [v.x + (clientX - box.left) / box.width * v.w, v.y + (clientY - box.top) / box.height * v.h];
 }
 
-function centerOn(at, minZoom = 2) {
-  const v = state.view, f = state.full;
-  let w = v.w, h = v.h;
-  if (w > f.w / minZoom) { const k = (f.w / minZoom) / w; w *= k; h *= k; }
-  state.view = clampView({ x: at[0] - w / 2, y: at[1] - h / 2, w, h });
+// Brings a location into view without changing the zoom (only when it is off the visible part).
+function reveal(at) {
+  const v = state.view, mx = v.w * 0.08, my = v.h * 0.08;
+  if (at[0] > v.x + mx && at[0] < v.x + v.w - mx && at[1] > v.y + my && at[1] < v.y + v.h - my) return;
+  state.view = clampView({ ...v, x: at[0] - v.w / 2, y: at[1] - v.h / 2 });
   updateView();
 }
 
@@ -240,7 +243,7 @@ function setupMapInput() {
     else if (b.dataset.zoom === 'out') zoomAt(1 / 0.7, ...c);
     else fitView();
   }));
-  window.addEventListener('resize', () => state.map && updateView());
+  window.addEventListener('resize', () => state.map && fitView());
 }
 
 function markerAt(e) {
@@ -302,6 +305,8 @@ function renderList() {
   const shown = state.map.locations.filter(l => matches(l, q, region));
   const visible = new Set(shown.map(l => l.id));
   $('count').textContent = `Показано ${shown.length} из ${state.map.locations.length}`;
+  const filtered = Boolean(q || region || Object.values(state.fx).some(Boolean));
+  document.querySelector('[data-quick="reset"]').classList.toggle('hot', filtered);
   let html = '';
   for (const r of state.map.regions) {
     const items = shown.filter(l => l.region === r.name);
@@ -327,6 +332,7 @@ function renderList() {
 function showList() {
   $('listPane').hidden = false;
   $('detailPane').hidden = true;
+  document.body.classList.remove('sheet-open');
 }
 
 function highlight(id) {
@@ -334,7 +340,7 @@ function highlight(id) {
   document.querySelectorAll('#list li').forEach(li => li.classList.toggle('on', li.dataset.id === id));
 }
 
-function select(id, { center = false } = {}) {
+function select(id, { reveal: bring = false } = {}) {
   hideTip();
   const l = id && state.byId.get(id);
   state.selected = l ? id : null;
@@ -342,12 +348,14 @@ function select(id, { center = false } = {}) {
   go(state.selected);
   if (!l) { showList(); return; }
   showDetail(l);
-  if (center) requestAnimationFrame(() => centerOn(point(l)));
+  if (bring) requestAnimationFrame(() => reveal(point(l)));
 }
 
 function showDetail(l) {
-  $('listPane').hidden = true;
+  // On a phone the card slides up over the page and the list stays under it.
+  $('listPane').hidden = !isPhone();
   $('detailPane').hidden = false;
+  document.body.classList.toggle('sheet-open', isPhone());
   const tier = state.regionTier[l.region];
   const effects = l.effects == null
     ? '<p class="note">Об эффектах этой локации пока нет сведений.</p>'
@@ -367,7 +375,8 @@ function showDetail(l) {
     <h3>Боссы</h3>
     <div class="tags">${l.bosses.map(b => `<span class="tag boss">${esc(b)}</span>`).join('')}</div>
     ${l.monsters.length ? `<h3>Монстры</h3><div class="tags">${l.monsters.map(m => `<span class="tag">${esc(m)}</span>`).join('')}</div>` : ''}
-    <h3>Эффекты</h3>${effects}`;
+    <h3>Эффекты</h3>${effects}
+    <button type="button" class="to-map" id="toMap">Показать на карте</button>`;
   $('detailPane').scrollTop = 0;
 }
 
@@ -376,6 +385,20 @@ function showDetail(l) {
 function setupSide() {
   $('q').addEventListener('input', renderList);
   $('region').addEventListener('change', renderList);
+  document.querySelectorAll('[data-quick]').forEach(b => b.addEventListener('click', () => {
+    const kind = b.dataset.quick;
+    state.fx = {};
+    if (kind === 'reset') {
+      $('q').value = '';
+      $('region').value = '';
+    } else {
+      for (const key of Object.keys(EFFECTS)) {
+        if (kind === 'none' || key !== 'ranged') state.fx[key] = 'without';
+      }
+    }
+    renderChips();
+    renderList();
+  }));
   $('chips').addEventListener('click', e => {
     const chip = e.target.closest('[data-fx]');
     if (!chip) return;
@@ -387,8 +410,15 @@ function setupSide() {
   $('list').addEventListener('click', e => {
     const li = e.target.closest('li[data-id]');
     if (!li) return;
-    select(li.dataset.id, { center: true });
-    if (window.matchMedia('(max-width: 860px)').matches) $('map').scrollIntoView({ behavior: 'smooth' });
+    select(li.dataset.id, { reveal: true });
+  });
+  $('detail').addEventListener('click', e => {
+    if (e.target.id !== 'toMap') return;
+    const id = state.selected;
+    showList();
+    highlight(id);
+    const top = $('map').getBoundingClientRect().top + window.scrollY - document.querySelector('.top').offsetHeight - 8;
+    window.scrollTo({ top, behavior: 'smooth' });
   });
   $('back').addEventListener('click', () => {
     select(null);

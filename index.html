@@ -25,7 +25,7 @@
     <dl class="terms">
       <dt>Цвет отметки</dt><dd>Сила региона среди регионов этой карты: зелёный — слабее, жёлтый — средний, красный — сильнее.</dd>
       <dt>▲ ▼ на отметке</dt><dd>Локация сильнее (▲) или слабее (▼) большинства локаций своего региона. Без стрелки — как большинство.</dd>
-      <dt>Эффекты</dt><dd>Что делают монстры: оглушение, замедление, превращение в волка, паника, ослепление, очарование, отбрасывание, атаки издалека, летающие монстры.</dd>
+      <dt>Эффекты</dt><dd>Что делают монстры: оглушение, замедление, превращение в волка, паника, ослепление, очарование, отбрасывание, атаки издалека.</dd>
       <dt>☠</dt><dd>Мегабосс: бой для большой группы сильных героев.</dd>
     </dl>
   </section>
@@ -56,6 +56,11 @@
         <select id="region" aria-label="Регион"></select>
         <div class="fx-filter">
           <div class="fx-title">Эффекты <span class="note">нажмите: только с ним, ещё раз: без него</span></div>
+          <div class="quick">
+            <button type="button" data-quick="none" title="Только локации, где монстры не накладывают никаких эффектов">Без эффектов</button>
+            <button type="button" data-quick="control" title="Без оглушения, замедления, волка, паники, ослепления, очарования и отбрасывания; атаки издалека не отсеиваются">Без контроля</button>
+            <button type="button" data-quick="reset" title="Очистить поиск, регион и эффекты">Сбросить</button>
+          </div>
           <div class="chips" id="chips"></div>
         </div>
         <div class="count" id="count"></div>
@@ -63,7 +68,7 @@
       <div class="list" id="list"></div>
     </div>
     <div class="side-detail" id="detailPane" hidden>
-      <button type="button" class="back" id="back">← К списку</button>
+      <button type="button" class="back" id="back"><span class="wide">← К списку</span><span class="narrow">✕ Закрыть</span></button>
       <article id="detail"></article>
     </div>
   </aside>
