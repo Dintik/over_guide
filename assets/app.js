@@ -9,13 +9,14 @@ const EFFECTS = {
   blind: 'Ослепление', beguile: 'Очарование', knockbacks: 'Отбрасывание',
   ranged: 'Атаки издалека',
 };
-const REGION_TEXT = { weak: 'слабый регион карты', middle: 'средний регион карты', strong: 'сильный регион карты' };
+// A location's place among all of the map's (rank 0 = the weakest, 1 = the strongest).
+const rankColor = rank => `hsl(${Math.round(120 - 120 * rank)}, 68%, ${Math.round(50 - 5 * rank)}%)`;
+const rankText = rank => rank < 0.25 ? 'Одна из слабых' : rank > 0.75 ? 'Одна из сильных' : 'Средняя';
 const LOC_TEXT = {
   weak: 'Слабее большинства локаций региона', strong: 'Сильнее большинства локаций региона',
   equal: 'Как большинство локаций региона', only: 'Единственная локация с боссом в регионе',
 };
 const ARROW = { weak: '▼', strong: '▲' };
-const SKULL = '\u2620\uFE0E';   // ☠ drawn as text, not as an emoji
 
 const state = { index: [], maps: {}, map: null, selected: null, view: null, full: null, fx: {} };
 
@@ -82,7 +83,6 @@ async function openMap(mapId) {
   state.map = map;
   state.selected = null;
   state.byId = new Map(map.locations.map(l => [l.id, l]));
-  state.regionTier = Object.fromEntries(map.regions.map(r => [r.name, r.strength]));
   document.title = `${map.name} — справочник Overkings`;
   state.full = { x: 0, y: 0, w: MAP_W, h: MAP_W * map.ratio };
   state.view = { ...state.full };
@@ -113,16 +113,26 @@ function drawMap() {
   const layer = el('g', {}, svg);
   for (const l of map.locations) {
     // Grey: nothing known yet about the location's effects.
-    const cls = `mk r-${state.regionTier[l.region]}${l.effects == null ? ' unknown' : ''}${l.mega ? ' mega' : ''}`;
+    const cls = `mk${l.effects == null ? ' unknown' : ''}${l.mega ? ' mega' : ''}`;
     const g = el('g', { class: cls, 'data-id': l.id }, layer);
-    el('circle', { class: 'ring', r: l.mega ? 23 : 15 }, g);
-    el('circle', { class: 'dot', r: l.mega ? 19 : 11 }, g);
-    const mark = l.mega ? SKULL : ARROW[l.strength] || '';
-    if (mark) el('text', {}, g).textContent = mark;
+    const r = l.mega ? 14 : 11;
+    el('circle', { class: 'ring', r: r + 4 }, g);
+    el('circle', { class: 'dot', r, fill: rankColor(l.rank) }, g);
+    if (l.mega) skull(g);
+    else if (ARROW[l.strength]) el('text', {}, g).textContent = ARROW[l.strength];
     g._loc = l;
     state.markers.push(g);
   }
   updateView();
+}
+
+// A megaboss's skull, drawn around (0, 0) so it sits in the middle of the marker.
+function skull(g) {
+  const s = el('g', { class: 'skull' }, g);
+  el('path', { d: 'M0 -9.5 C5.8 -9.5 8.5 -5.6 8.5 -1.6 C8.5 1.4 7 3.3 5 4.3 L5 7.5 C5 8.6 4.2 9.3 3.2 9.3 L-3.2 9.3 C-4.2 9.3 -5 8.6 -5 7.5 L-5 4.3 C-7 3.3 -8.5 1.4 -8.5 -1.6 C-8.5 -5.6 -5.8 -9.5 0 -9.5 Z' }, s);
+  el('circle', { class: 'eye', cx: -3.4, cy: -1.4, r: 2.4 }, s);
+  el('circle', { class: 'eye', cx: 3.4, cy: -1.4, r: 2.4 }, s);
+  el('path', { class: 'eye', d: 'M0 2 L1.3 4.4 L-1.3 4.4 Z' }, s);
 }
 
 function updateView() {
@@ -277,7 +287,7 @@ function hideTip() {
 
 function renderRegionSelect() {
   $('region').innerHTML = '<option value="">Все регионы</option>' + state.map.regions.map(r =>
-    `<option value="${esc(r.name)}">${esc(r.name)} — ${REGION_TEXT[r.strength]}</option>`).join('');
+    `<option value="${esc(r.name)}">${esc(r.name)}</option>`).join('');
 }
 
 function renderChips() {
@@ -314,10 +324,10 @@ function renderList() {
   for (const r of state.map.regions) {
     const items = shown.filter(l => l.region === r.name);
     if (!items.length) continue;
-    html += `<h4 class="region-head"><i class="sw ${r.strength}"></i>${esc(r.name)} <span>${REGION_TEXT[r.strength]}</span></h4><ul>`;
+    html += `<h4 class="region-head">${esc(r.name)}</h4><ul>`;
     html += items.map(l => `
       <li data-id="${l.id}" class="${state.selected === l.id ? 'on' : ''}">
-        <span class="mark s-${l.strength}${l.mega ? ' mega' : ''}" title="${LOC_TEXT[l.strength]}">${l.mega ? SKULL : ARROW[l.strength] || '•'}</span>
+        <span class="mark${l.effects == null ? ' unknown' : ''}" style="--c:${rankColor(l.rank)}" title="${rankText(l.rank)} на карте; ${LOC_TEXT[l.strength].toLowerCase()}">${l.mega ? '☠' : ARROW[l.strength] || ''}</span>
         <div>
           <div class="name">${esc(l.name)}</div>
           <div class="sub">${esc(l.bosses.join(', '))}</div>
@@ -360,7 +370,6 @@ function showDetail(l) {
   $('listPane').hidden = !isPhone();
   $('detailPane').hidden = false;
   document.body.classList.toggle('sheet-open', isPhone());
-  const tier = state.regionTier[l.region];
   const effects = l.effects == null
     ? '<p class="note">Об эффектах этой локации пока нет сведений.</p>'
     : l.effects.length
@@ -372,8 +381,8 @@ function showDetail(l) {
     ${l.mega ? '<div class="warn">☠ Мегабосс: бой для большой группы сильных героев.</div>' : ''}
     ${l.description ? `<p class="desc">${esc(l.description)}</p>` : ''}
     <div class="stats">
-      <div class="stat"><div class="k">Сила в регионе</div><div class="v s-${l.strength}">${ARROW[l.strength] ? ARROW[l.strength] + ' ' : ''}${LOC_TEXT[l.strength]}</div></div>
-      <div class="stat"><div class="k">Регион</div><div class="v"><i class="sw ${tier}"></i>${REGION_TEXT[tier]}</div></div>
+      <div class="stat"><div class="k">Сила на карте</div><div class="v"><i class="sw" style="background:${rankColor(l.rank)}"></i>${rankText(l.rank)} на карте</div></div>
+      <div class="stat"><div class="k">Сила в регионе «${esc(l.region)}»</div><div class="v">${ARROW[l.strength] ? ARROW[l.strength] + ' ' : ''}${LOC_TEXT[l.strength]}</div></div>
       <div class="stat"><div class="k">Бой</div><div class="v">${l.group ? 'Можно группой' : 'В одиночку'}</div></div>
     </div>
     <h3>Боссы</h3>

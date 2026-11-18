@@ -8,9 +8,6 @@
   --gold: #e0b45a;
   --gold-2: #f3d48a;
   --danger: #e2674f;
-  --weak: #5fc75a;
-  --middle: #e8c33f;
-  --strong: #e0573f;
   --unknown: #8d877c;
   --radius: 8px;
   --side: 400px;
@@ -61,9 +58,7 @@ button, input, select { font: inherit; color: inherit; }
 
 /* Colour swatches of region strength */
 .sw { display: inline-block; width: 10px; height: 10px; margin-right: 6px; border-radius: 50%; vertical-align: 0; }
-.sw.weak { background: var(--weak); }
-.sw.middle { background: var(--middle); }
-.sw.strong { background: var(--strong); }
+.sw.scale { width: 34px; border-radius: 5px; background: linear-gradient(90deg, hsl(120, 68%, 50%), hsl(60, 68%, 48%), hsl(0, 68%, 45%)); }
 .sw.unknown { background: var(--unknown); }
 
 /* Overview */
@@ -143,12 +138,9 @@ button, input, select { font: inherit; color: inherit; }
 
 .mk { cursor: pointer; }
 .mk .dot { stroke: #120e08; stroke-width: 2.5; }
-.mk.r-weak .dot { fill: var(--weak); }
-.mk.r-middle .dot { fill: var(--middle); }
-.mk.r-strong .dot { fill: var(--strong); }
 .mk.unknown .dot { fill: var(--unknown); }
-.mk.mega .dot, .mk.mega.unknown .dot { fill: #8e1f15; stroke: #f3d48a; stroke-width: 2.5; }
-.mk.mega text { font-size: 28px; font-weight: 400; fill: #fff3dc; }
+.mk .skull path:first-child { fill: #120e08; }
+.mk .skull .eye { fill: #f3e6c8; }
 .mk text { font-size: 11px; font-weight: 700; fill: #120e08; text-anchor: middle; dominant-baseline: central; pointer-events: none; }
 .mk .ring { fill: none; stroke: #fff6dc; stroke-width: 3; opacity: 0; }
 .mk:hover .ring, .mk.on .ring { opacity: 1; }
@@ -228,10 +220,20 @@ button, input, select { font: inherit; color: inherit; }
   cursor: pointer;
 }
 .list li:hover, .list li.on { background: var(--panel-2); }
-.mark { text-align: center; font-weight: 700; color: var(--muted); }
-.s-weak { color: var(--weak); }
-.s-strong { color: var(--strong); }
-.mark.mega { font-size: 20px; line-height: 1; color: var(--danger); }
+.mark {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+  border-radius: 50%;
+  border: 2px solid #120e08;
+  background: var(--c);
+  font-size: 10px;
+  line-height: 1;
+  color: #120e08;
+}
+.mark.unknown { background: var(--unknown); }
 .badge.unknown { border-color: #55514a; background: #2b2924; color: #c9c3b8; }
 .list .name { font-weight: 600; }
 .list .sub { font-size: 13px; color: var(--muted); }
