@@ -129,6 +129,6 @@ button.x:hover { color: var(--text); }
 .code { font-family: ui-monospace, Menlo, monospace; font-size: 18px; letter-spacing: .08em; color: var(--gold-2); }
 
 @media (max-width: 860px) {
-  .top .who { margin-left: 0; flex-wrap: wrap; white-space: normal; }
+  .top .who { flex-basis: 100%; margin-left: 0; flex-wrap: wrap; white-space: normal; }
   .clan-page .side { overflow: visible; }
 }

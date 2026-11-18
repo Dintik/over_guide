@@ -43,6 +43,10 @@ button, input, select { font: inherit; color: inherit; }
 }
 .brand { flex: none; font-weight: 700; font-size: 17px; color: var(--text); text-decoration: none; }
 .brand span { color: var(--gold); }
+.pages { display: flex; flex: none; padding: 3px; border: 1px solid var(--line); border-radius: 8px; background: #17120b; }
+.pages a { padding: 4px 12px; border-radius: 6px; color: var(--muted); text-decoration: none; font-weight: 600; white-space: nowrap; }
+.pages a:hover { color: var(--text); }
+.pages a.on { background: var(--panel-2); color: var(--gold-2); }
 .tabs { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: thin; }
 .tabs a {
   flex: none;
@@ -280,8 +284,9 @@ button, input, select { font: inherit; color: inherit; }
 body.on-map .foot { display: none; }
 
 @media (max-width: 860px) {
-  .top { flex-direction: column; align-items: stretch; gap: 8px; }
-  .tabs { margin: 0 -16px; padding: 0 16px 2px; }
+  .top { flex-wrap: wrap; gap: 8px 12px; }
+  .pages { margin-left: auto; }
+  .tabs { flex-basis: 100%; margin: 0 -16px; padding: 0 16px 2px; }
   .mapview { display: flex; flex-direction: column; height: auto; }
   .map-wrap { flex: none; overflow: visible; }
   .map { height: auto; max-height: 70vh; overflow: hidden; }

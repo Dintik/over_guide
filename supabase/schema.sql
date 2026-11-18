@@ -29,13 +29,21 @@ create table if not exists public.clan_guest_codes (
   created_by text
 );
 
--- One mark a player: the point he stands on (a new mark moves it).
+-- A point is marked or not (as on the bot's map): who marked it and when. A player marks as many as he likes.
+-- (Until 2026-11-18 a player had one mark keyed by him: that table goes, its few marks with it.)
+do $$ begin
+  if exists (select 1 from pg_index i join pg_attribute a on a.attrelid = i.indrelid and a.attnum = any (i.indkey)
+              where i.indrelid = to_regclass('public.clan_marks') and i.indisprimary and a.attname = 'user_id') then
+    drop table public.clan_marks;
+  end if;
+end $$;
 create table if not exists public.clan_marks (
-  user_id    uuid primary key references public.clan_members (user_id) on delete cascade,
-  point      text not null check (point ~ '^[a-z0-9-]+/[a-z0-9-]+$'),
+  point      text primary key check (point ~ '^[a-z0-9-]+/[a-z0-9-]+$'),
+  user_id    uuid not null references public.clan_members (user_id) on delete cascade,
   nick       text not null,
   created_at timestamptz not null default now()
 );
+create index if not exists clan_marks_user on public.clan_marks (user_id);
 
 -- Passwords off (an admin's switch): a nick alone lets one in with the marker's rights; switched back on,
 -- those who came in so are out. Admins always need their password.
@@ -142,23 +150,35 @@ begin
   return public.clan_me();
 end $$;
 
--- Put the caller's mark on a point (moves it from the old one).
+-- Mark a point in the caller's name (a marked one stays as it is).
 create or replace function public.clan_mark(p_point text) returns void
 language plpgsql security definer set search_path = public as $$
 declare m public.clan_members;
 begin
   if public.clan_rank(public.clan_role()) < 2 then raise exception 'forbidden'; end if;
   select * into m from public.clan_members where user_id = auth.uid();
-  insert into public.clan_marks (user_id, point, nick) values (m.user_id, p_point, m.nick)
-  on conflict (user_id) do update set point = excluded.point, nick = excluded.nick, created_at = now();
+  insert into public.clan_marks (point, user_id, nick) values (p_point, m.user_id, m.nick)
+  on conflict (point) do nothing;
 end $$;
 
--- Take one mark off: the caller's own by default, any player's by his id.
-create or replace function public.clan_unmark(p_user uuid default null) returns void
+-- A click on a point: marked -> unmarked, unmarked -> marked by the caller. Returns whether it is marked now.
+create or replace function public.clan_toggle(p_point text) returns boolean
 language plpgsql security definer set search_path = public as $$
 begin
   if public.clan_rank(public.clan_role()) < 2 then raise exception 'forbidden'; end if;
-  delete from public.clan_marks where user_id = coalesce(p_user, auth.uid());
+  delete from public.clan_marks where point = p_point;
+  if found then return false; end if;
+  perform public.clan_mark(p_point);
+  return true;
+end $$;
+
+-- Take one point's mark off, whoever put it.
+drop function if exists public.clan_unmark(uuid);
+create or replace function public.clan_unmark(p_point text) returns void
+language plpgsql security definer set search_path = public as $$
+begin
+  if public.clan_rank(public.clan_role()) < 2 then raise exception 'forbidden'; end if;
+  delete from public.clan_marks where point = p_point;
 end $$;
 
 -- All marks off at once: admins.
@@ -297,11 +317,11 @@ grant select on table public.clan_settings to authenticated;
 revoke insert, update, delete on table public.clan_members, public.clan_marks from anon, authenticated;
 grant select on table public.clan_members, public.clan_marks to authenticated;
 grant execute on function public.clan_me(), public.clan_join(text, text), public.clan_mark(text),
-  public.clan_unmark(uuid), public.clan_clear_marks(), public.clan_ban(text, boolean), public.clan_remove(text),
+  public.clan_unmark(text), public.clan_toggle(text), public.clan_clear_marks(), public.clan_ban(text, boolean), public.clan_remove(text),
   public.clan_set_code(text, text), public.clan_guest_code(text), public.clan_guest_status(), public.clan_guest_off(),
   public.clan_role(), public.clan_leave(), public.clan_set_open(boolean) to authenticated;
 revoke execute on function public.clan_me(), public.clan_join(text, text), public.clan_mark(text),
-  public.clan_unmark(uuid), public.clan_clear_marks(), public.clan_ban(text, boolean), public.clan_remove(text),
+  public.clan_unmark(text), public.clan_toggle(text), public.clan_clear_marks(), public.clan_ban(text, boolean), public.clan_remove(text),
   public.clan_set_code(text, text), public.clan_guest_code(text), public.clan_guest_status(), public.clan_guest_off(),
   public.clan_role(), public.clan_leave(), public.clan_set_open(boolean) from public, anon;
 

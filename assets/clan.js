@@ -186,21 +186,20 @@ function drawPoint(g, p) {
 
 function renderLegend() {
   $('legend').innerHTML = `<div class="keys"><span><i class="kd"></i>свободна</span><span><i class="kd marked"></i>отмечена</span>
-    ${can('marker') ? '<span>клик по точке — поставить или снять свою метку</span>' : ''}</div>`;
+    ${can('marker') ? '<span>клик по точке — поставить или снять метку</span>' : ''}</div>`;
 }
 
-// A click on a point: the caller's mark goes there, or off when it is already there. Shown at once,
-// the database confirms (or the marks are read again).
+// A click on a point: unmarked -> marked in the caller's name, marked (by anyone) -> unmarked.
+// Shown at once; the database confirms (or the marks are read again).
 async function toggleMark(p) {
   const me = state.me;
-  const mine = state.marks.find(m => m.user_id === me.id);
-  const off = mine && mine.point === p.id;
-  state.marks = state.marks.filter(m => m.user_id !== me.id);
+  const off = state.marks.some(m => m.point === p.id);
+  state.marks = state.marks.filter(m => m.point !== p.id);
   if (!off) state.marks.push({ user_id: me.id, point: p.id, nick: me.nick, created_at: new Date().toISOString() });
   redrawPoints();
   renderPoint();
   renderMarks();
-  await act(() => off ? rpc('clan_unmark', {}) : rpc('clan_mark', { p_point: p.id }));
+  await act(() => rpc('clan_toggle', { p_point: p.id }));
 }
 
 function pick(p) {
@@ -235,9 +234,8 @@ function renderPoint() {
   $('pointPane').hidden = !p;
   if (!p) return;
   const here = marksAt(p.id);
-  const mineHere = here.some(m => m.user_id === state.me.id);
   const actions = can('marker')
-    ? `<p class="note">${mineHere ? 'Ваша метка здесь. Клик по точке ещё раз — снять.' : 'Клик по точке — поставить сюда свою метку.'}</p>`
+    ? `<p class="note">${here.length ? 'Клик по точке ещё раз — снять метку.' : 'Клик по точке — поставить метку.'}</p>`
     : '';
   $('pointPane').innerHTML = `
     <div class="pane-head"><h2>${esc(p.name)}</h2><button type="button" class="x" data-act="close" aria-label="Закрыть">✕</button></div>
@@ -251,7 +249,7 @@ function renderPoint() {
 function markRow(m) {
   const mine = m.user_id === state.me.id;
   const where = pointName(m.point);
-  const remove = can('marker') ? `<button type="button" class="x" data-unmark="${m.user_id}" title="Снять метку">✕</button>` : '';
+  const remove = can('marker') ? `<button type="button" class="x" data-unmark="${esc(m.point)}" title="Снять метку">✕</button>` : '';
   return `<li class="${mine ? 'mine' : ''}" data-point="${esc(m.point)}">
     <div><b>${esc(m.nick)}</b> <span class="note">${ago(m.created_at)}</span><br>
       <span class="where">${esc(where.name)}</span> <span class="note">· ${esc(where.map)}</span></div>${remove}</li>`;
@@ -393,7 +391,7 @@ function setup() {
     if (t.dataset.act === 'close') select(null);
     else if (t.dataset.unmark) {
       e.stopPropagation();
-      act(() => rpc('clan_unmark', { p_user: t.dataset.unmark }));
+      act(() => rpc('clan_unmark', { p_point: t.dataset.unmark }));
     } else if (t.dataset.point) {
       const [mapId, pointId] = t.dataset.point.split('/');
       location.hash = `#${mapId}/${pointId}`;
