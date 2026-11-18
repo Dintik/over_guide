@@ -3,61 +3,71 @@
   {
    "id": "bervil",
    "name": "Бервиль",
-   "locations": 6,
+   "bosses": 6,
+   "epics": 0,
    "regions": 2
   },
   {
    "id": "konhobar",
    "name": "Конхобар",
-   "locations": 38,
+   "bosses": 35,
+   "epics": 3,
    "regions": 5
   },
   {
    "id": "metanoyya",
    "name": "Метанойя",
-   "locations": 25,
+   "bosses": 24,
+   "epics": 1,
    "regions": 4
   },
   {
    "id": "panfobion",
    "name": "Панфобион",
-   "locations": 31,
+   "bosses": 28,
+   "epics": 3,
    "regions": 4
   },
   {
    "id": "sorian",
    "name": "Сориан",
-   "locations": 46,
+   "bosses": 45,
+   "epics": 1,
    "regions": 3
   },
   {
    "id": "ortre",
    "name": "Ортрэ",
-   "locations": 51,
+   "bosses": 50,
+   "epics": 1,
    "regions": 3
   },
   {
    "id": "almerik",
    "name": "Альмерик",
-   "locations": 46,
+   "bosses": 45,
+   "epics": 1,
    "regions": 5
   },
   {
    "id": "vergeland",
    "name": "Вергеланд",
-   "locations": 21,
+   "bosses": 20,
+   "epics": 1,
    "regions": 5
   },
   {
    "id": "haranger-ford",
    "name": "Харангер-фьорд",
-   "locations": 25,
+   "bosses": 24,
+   "epics": 1,
    "regions": 4
   },
   {
    "id": "heymskringla",
    "name": "Хеймскрингла",
-   "locations": 29,
+   "bosses": 27,
+   "epics": 2,
    "regions": 4
   }
  ]

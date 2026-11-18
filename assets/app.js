@@ -68,7 +68,9 @@ function renderCards() {
       <img src="maps/${m.id}.jpg" alt="" loading="lazy">
       <div class="body">
         <h3><span class="step">${i + 1}</span>${esc(m.name)}</h3>
-        <div class="meta">Локаций с боссами: ${m.locations} · регионов: ${m.regions}</div>
+        <div class="meta">Локаций с боссами: ${m.bosses}</div>
+        <div class="meta">Локаций с эпическими боссами: ${m.epics}</div>
+        <div class="meta">Регионов: ${m.regions}</div>
       </div>
     </a>`).join('');
 }
