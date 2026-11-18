@@ -1,0 +1,150 @@
+/* The clan page: on top of style.css */
+:root {
+  --k-mine: #e3b341;
+  --k-quarry: #b9b2a6;
+  --k-sawmill: #c7884a;
+  --k-farm: #7fc65e;
+  --k-source: #6fb2f0;
+  --mark: #ffe08a;
+  --mine-mark: #8ef08a;
+}
+
+.top .who { display: flex; align-items: center; gap: 8px; margin-left: auto; white-space: nowrap; }
+.who button, .row button, .pane button, .members button, .dlg button {
+  padding: 5px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel-2);
+  cursor: pointer;
+}
+.who button:hover, .row button:hover, .pane button:hover, .members button:hover { border-color: var(--gold); }
+button.primary { background: var(--gold); border-color: var(--gold); color: #1a1408; font-weight: 600; }
+button.danger { border-color: #7a3a2c; color: #f2b3a6; }
+button.wide { width: 100%; margin-top: 10px; }
+button.x { padding: 2px 8px; background: transparent; border-color: transparent; color: var(--muted); }
+button.x:hover { color: var(--text); }
+.live { width: 9px; height: 9px; border-radius: 50%; background: #6d5f48; }
+.live.on { background: #6fd36a; box-shadow: 0 0 6px #6fd36a; }
+
+/* Sign-in */
+.gate { flex: 1; display: grid; place-items: center; padding: 24px 16px; }
+.gate-card {
+  display: grid;
+  gap: 12px;
+  width: 100%;
+  max-width: 380px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+}
+.gate-card h1 { margin: 0; font-size: 22px; color: var(--gold-2); }
+.gate-card p { margin: 0; }
+.gate-card label { display: grid; gap: 4px; font-size: 13px; color: var(--muted); }
+.gate-card input, .row input, .row select {
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel-2);
+  font-size: 15px;
+}
+.gate-card .primary { padding: 9px; }
+.error { min-height: 1.2em; margin: 0; color: #f2b3a6; font-size: 14px; }
+
+/* Map markers */
+.mk.pt .dot { stroke: #120e08; stroke-width: 2.5; fill: #8d877c; }
+.mk.pt text { font-size: 11px; font-weight: 700; fill: #120e08; text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+.mk.k-mine .dot { fill: var(--k-mine); }
+.mk.k-quarry .dot { fill: var(--k-quarry); }
+.mk.k-sawmill .dot { fill: var(--k-sawmill); }
+.mk.k-farm .dot { fill: var(--k-farm); }
+.mk.k-source .dot { fill: var(--k-source); }
+.mk.pt.marked .ring { opacity: 1; stroke: var(--mark); stroke-width: 4; }
+.mk.pt.mine .ring { stroke: var(--mine-mark); }
+.mk.pt.on .ring { opacity: 1; stroke: #fff; stroke-dasharray: 4 3; }
+.mk.pt text.tag {
+  font-size: 13px;
+  font-weight: 700;
+  fill: var(--mark);
+  text-anchor: start;
+  paint-order: stroke;
+  stroke: #120e08;
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+.mk.pt.mine text.tag { fill: var(--mine-mark); }
+.kd {
+  display: inline-grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  border-radius: 50%;
+  border: 1.5px solid #120e08;
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 700;
+  color: #120e08;
+  vertical-align: -3px;
+}
+.kd.k-mine { background: var(--k-mine); }
+.kd.k-quarry { background: var(--k-quarry); }
+.kd.k-sawmill { background: var(--k-sawmill); }
+.kd.k-farm { background: var(--k-farm); }
+.kd.k-source { background: var(--k-source); }
+.kd.marked { background: transparent; border: 3px solid var(--mark); }
+
+/* Side panes */
+.clan-page .side { overflow-y: auto; }
+.pane { padding: 12px 14px; border-bottom: 1px solid var(--line); }
+.pane-head { display: flex; justify-content: space-between; align-items: start; gap: 8px; }
+.pane h2 { margin: 0 0 2px; font-size: 19px; color: var(--gold-2); }
+.pane-title { font-size: 15px !important; color: var(--gold) !important; text-transform: uppercase; letter-spacing: .04em; }
+.pane h3 { margin: 14px 0 6px; font-size: 13px; color: var(--gold); text-transform: uppercase; letter-spacing: .04em; }
+.pane .desc { margin: 8px 0 0; color: #cfc2a6; font-style: italic; }
+.marks { list-style: none; margin: 0; padding: 0; }
+.marks li {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 7px 4px;
+  border-bottom: 1px dashed #352b1b;
+  cursor: pointer;
+}
+.marks li:hover { background: var(--panel-2); }
+.marks li.mine b { color: var(--mine-mark); }
+.marks li .where { color: var(--text); }
+.marks li.empty { color: var(--muted); cursor: default; }
+
+/* Dialogs */
+.dlg {
+  width: min(720px, calc(100vw - 24px));
+  max-height: calc(100vh - 40px);
+  padding: 0 18px 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  color: var(--text);
+}
+.dlg.small { width: min(380px, calc(100vw - 24px)); padding-top: 14px; }
+.dlg::backdrop { background: rgba(0, 0, 0, .6); }
+.dlg-head { position: sticky; top: 0; display: flex; justify-content: space-between; align-items: center; padding: 14px 0 6px; background: var(--panel); }
+.dlg h2 { margin: 0; color: var(--gold-2); }
+.dlg h3 { margin: 16px 0 8px; font-size: 14px; color: var(--gold); }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.row input { flex: 1; min-width: 160px; }
+.row.end { justify-content: flex-end; }
+.table-wrap { overflow-x: auto; }
+.members { width: 100%; border-collapse: collapse; font-size: 14px; }
+.members th, .members td { padding: 6px; border-bottom: 1px solid #2c2416; text-align: left; white-space: nowrap; }
+.members th { color: var(--muted); font-weight: 600; font-size: 12px; }
+.members tr.banned td { opacity: .7; }
+.members .tools { text-align: right; }
+.members .tools button { padding: 3px 8px; font-size: 13px; }
+.badge.danger { border-color: #6d2f22; color: var(--danger); }
+.code { font-family: ui-monospace, Menlo, monospace; font-size: 18px; letter-spacing: .08em; color: var(--gold-2); }
+
+@media (max-width: 860px) {
+  .top .who { margin-left: 0; flex-wrap: wrap; white-space: normal; }
+  .clan-page .side { overflow: visible; }
+}

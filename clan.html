@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Клан — карта точек добычи</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/clan.css">
+</head>
+<body class="clan-page">
+<header class="top">
+  <a class="brand" href="clan.html">Клан <span>Overkings</span></a>
+  <nav class="tabs" id="tabs" aria-label="Карты"></nav>
+  <div class="who" id="who" hidden>
+    <span class="live" id="live" title="Обновления приходят сразу"></span>
+    <span id="whoText"></span>
+    <button type="button" id="adminOpen" hidden>Управление</button>
+    <button type="button" id="logout">Выйти</button>
+  </div>
+</header>
+
+<main id="gate" class="gate">
+  <form class="gate-card" id="loginForm" hidden>
+    <h1>Клановая страница</h1>
+    <p class="note">Введите свой игровой ник и пароль, который дал админ клана. Метки ставятся от имени ника.</p>
+    <label>Игровой ник<input id="nick" autocomplete="nickname" maxlength="24" required></label>
+    <label>Пароль<input id="code" type="password" autocomplete="current-password" required></label>
+    <button type="submit" class="primary" id="loginBtn">Войти</button>
+    <p class="error" id="loginError" role="alert"></p>
+  </form>
+  <div class="gate-card" id="gateMessage" hidden></div>
+</main>
+
+<main id="clan" class="mapview" hidden>
+  <section class="map-wrap" aria-label="Карта">
+    <svg id="map" class="map" role="img"></svg>
+    <div class="map-ui">
+      <button type="button" data-zoom="in" aria-label="Приблизить">+</button>
+      <button type="button" data-zoom="out" aria-label="Отдалить">−</button>
+      <button type="button" data-zoom="reset" aria-label="Показать всю карту">⤢</button>
+    </div>
+    <div class="legend" id="legend"></div>
+  </section>
+
+  <aside class="side">
+    <section class="pane" id="pointPane" hidden></section>
+    <section class="pane">
+      <h2 class="pane-title">Кто где <span class="note" id="marksCount"></span></h2>
+      <ul class="marks" id="marks"></ul>
+      <button type="button" class="danger wide" id="clearAll" hidden>Сбросить все метки</button>
+    </section>
+  </aside>
+</main>
+
+<dialog id="adminDlg" class="dlg">
+  <div class="dlg-head"><h2>Управление</h2><button type="button" class="x" data-close aria-label="Закрыть">✕</button></div>
+  <section>
+    <h3>Блокировка</h3>
+    <form class="row" id="banForm">
+      <input id="banTarget" placeholder="Ник или id игрока" required>
+      <button type="submit" data-ban="1">Заблокировать</button>
+      <button type="submit" data-ban="0">Разблокировать</button>
+    </form>
+    <p class="error" id="adminError" role="alert"></p>
+  </section>
+  <section>
+    <h3>Игроки <span class="note" id="membersCount"></span></h3>
+    <div class="table-wrap"><table class="members"><thead><tr><th>Ник</th><th>Доступ</th><th>Id</th><th>Был</th><th></th></tr></thead>
+      <tbody id="members"></tbody></table></div>
+  </section>
+  <section id="ownerTools" hidden>
+    <h3>Пароли</h3>
+    <form class="row" id="codeForm">
+      <select id="codeRole">
+        <option value="viewer">Смотреть</option>
+        <option value="marker">Ставить метки</option>
+        <option value="admin">Админ</option>
+        <option value="owner">Главный админ</option>
+      </select>
+      <input id="codePass" placeholder="Новый пароль (от 6 символов)" minlength="6" required>
+      <button type="submit">Сменить</button>
+    </form>
+    <h3>Гостевой пароль</h3>
+    <p class="note">Действует час, только смотреть. Показывается один раз.</p>
+    <div class="row"><button type="button" id="guestBtn">Создать на час</button><output id="guestOut"></output></div>
+  </section>
+</dialog>
+
+<dialog id="confirmDlg" class="dlg small">
+  <p id="confirmText"></p>
+  <div class="row end"><button type="button" value="no">Отмена</button><button type="button" class="danger" value="yes">Да</button></div>
+</dialog>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.46.1/dist/umd/supabase.js"></script>
+<script src="assets/clan-config.js"></script>
+<script src="assets/mapview.js"></script>
+<script src="assets/clan.js"></script>
+</body>
+</html>

@@ -1,8 +1,6 @@
 'use strict';
 
 const $ = id => document.getElementById(id);
-const SVG_NS = 'http://www.w3.org/2000/svg';
-const MAP_W = 1000;   // the map picture in SVG units; locations come in percent of it
 
 const EFFECTS = {
   stuns: 'Оглушение', slows: 'Замедление', wolf: 'Превращение в волка', panic: 'Паника',
@@ -18,7 +16,7 @@ const LOC_TEXT = {
 };
 const ARROW = { weak: '▼', strong: '▲' };
 
-const state = { index: [], maps: {}, map: null, selected: null, view: null, full: null, fx: {} };
+const state = { index: [], maps: {}, map: null, selected: null, fx: {}, mv: null };
 
 const isPhone = () => window.matchMedia('(max-width: 860px)').matches;
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -84,50 +82,27 @@ async function openMap(mapId) {
   state.selected = null;
   state.byId = new Map(map.locations.map(l => [l.id, l]));
   document.title = `${map.name} — справочник Overkings`;
-  state.full = { x: 0, y: 0, w: MAP_W, h: MAP_W * map.ratio };
-  state.view = { ...state.full };
-  $('map').style.aspectRatio = `1 / ${map.ratio}`;
   renderRegionSelect();
-  drawMap();
-  fitView();
+  state.mv.set({ image: `maps/${map.id}.jpg`, ratio: map.ratio, label: `Карта ${map.name}`,
+                 items: map.locations, draw: drawMarker });
   renderList();
   showList();
 }
 
-const point = l => [l.at[0] / 100 * MAP_W, l.at[1] / 100 * MAP_W * state.map.ratio];
-
-function el(tag, attrs = {}, parent) {
-  const node = document.createElementNS(SVG_NS, tag);
-  for (const [k, v] of Object.entries(attrs)) node.setAttribute(k, v);
-  if (parent) parent.appendChild(node);
-  return node;
+function drawMarker(g, l) {
+  const el = state.mv.el;
+  // Grey: nothing known yet about the location's effects.
+  g.setAttribute('class', `mk${l.effects == null ? ' unknown' : ''}${l.mega ? ' mega' : ''}`);
+  const r = l.mega ? 14 : 11;
+  el('circle', { class: 'ring', r: r + 4 }, g);
+  el('circle', { class: 'dot', r, fill: rankColor(l.rank) }, g);
+  if (l.mega) skull(g);
+  else if (ARROW[l.strength]) el('text', {}, g).textContent = ARROW[l.strength];
 }
 
-function drawMap() {
-  const svg = $('map');
-  const map = state.map;
-  svg.innerHTML = '';
-  svg.setAttribute('aria-label', `Карта ${map.name}`);
-  el('image', { href: `maps/${map.id}.jpg`, x: 0, y: 0, width: state.full.w, height: state.full.h, preserveAspectRatio: 'none' }, svg);
-  state.markers = [];
-  const layer = el('g', {}, svg);
-  for (const l of map.locations) {
-    // Grey: nothing known yet about the location's effects.
-    const cls = `mk${l.effects == null ? ' unknown' : ''}${l.mega ? ' mega' : ''}`;
-    const g = el('g', { class: cls, 'data-id': l.id }, layer);
-    const r = l.mega ? 14 : 11;
-    el('circle', { class: 'ring', r: r + 4 }, g);
-    el('circle', { class: 'dot', r, fill: rankColor(l.rank) }, g);
-    if (l.mega) skull(g);
-    else if (ARROW[l.strength]) el('text', {}, g).textContent = ARROW[l.strength];
-    g._loc = l;
-    state.markers.push(g);
-  }
-  updateView();
-}
-
-// A megaboss's skull, drawn around (0, 0) so it sits in the middle of the marker.
+// An epic boss's skull, drawn around (0, 0) so it sits in the middle of the marker.
 function skull(g) {
+  const el = state.mv.el;
   const s = el('g', { class: 'skull' }, g);
   el('path', { d: 'M0 -9.5 C5.8 -9.5 8.5 -5.6 8.5 -1.6 C8.5 1.4 7 3.3 5 4.3 L5 7.5 C5 8.6 4.2 9.3 3.2 9.3 L-3.2 9.3 C-4.2 9.3 -5 8.6 -5 7.5 L-5 4.3 C-7 3.3 -8.5 1.4 -8.5 -1.6 C-8.5 -5.6 -5.8 -9.5 0 -9.5 Z' }, s);
   el('circle', { class: 'eye', cx: -3.4, cy: -1.4, r: 2.4 }, s);
@@ -135,138 +110,8 @@ function skull(g) {
   el('path', { class: 'eye', d: 'M0 2 L1.3 4.4 L-1.3 4.4 Z' }, s);
 }
 
-function updateView() {
-  const svg = $('map');
-  const v = state.view;
-  svg.setAttribute('viewBox', `${v.x} ${v.y} ${v.w} ${v.h}`);
-  const box = svg.getBoundingClientRect();
-  // Markers keep their size on screen at any zoom.
-  const small = box.width && box.width < 600 ? 0.75 : 1;
-  const unit = (box.width ? Math.max(v.w / box.width, v.h / box.height) : 1) * small;
-  for (const g of state.markers) {
-    const [x, y] = point(g._loc);
-    g.setAttribute('transform', `translate(${x} ${y}) scale(${unit})`);
-  }
-}
-
-// The view stays inside the picture: no zooming out past the whole map, no dragging into the dark.
-function clampView(v) {
-  const f = state.full, fit = state.fit || f;
-  const w = Math.min(Math.max(v.w, f.w / 10), fit.w);
-  const h = w * (fit.h / fit.w);
-  const axis = (pos, size, start, total) => size >= total ? start + (total - size) / 2 : Math.min(Math.max(pos, start), start + total - size);
-  return { x: axis(v.x, w, f.x, f.w), y: axis(v.y, h, f.y, f.h), w, h };
-}
-
-function fitView() {
-  const box = $('map').getBoundingClientRect();
-  const f = state.full;
-  const ratio = box.width && box.height ? box.height / box.width : f.h / f.w;
-  let w = f.w, h = f.w * ratio;
-  if (h < f.h) { h = f.h; w = h / ratio; }
-  state.view = { x: f.x + (f.w - w) / 2, y: f.y + (f.h - h) / 2, w, h };
-  state.fit = { ...state.view };
-  updateView();
-}
-
-function zoomAt(factor, cx, cy) {
-  const v = state.view;
-  state.view = clampView({ x: cx - (cx - v.x) * factor, y: cy - (cy - v.y) * factor, w: v.w * factor, h: v.h * factor });
-  updateView();
-}
-
-function toMap(clientX, clientY) {
-  const box = $('map').getBoundingClientRect();
-  const v = state.view;
-  return [v.x + (clientX - box.left) / box.width * v.w, v.y + (clientY - box.top) / box.height * v.h];
-}
-
-// Brings a location into view without changing the zoom (only when it is off the visible part).
-function reveal(at) {
-  const v = state.view, mx = v.w * 0.08, my = v.h * 0.08;
-  if (at[0] > v.x + mx && at[0] < v.x + v.w - mx && at[1] > v.y + my && at[1] < v.y + v.h - my) return;
-  state.view = clampView({ ...v, x: at[0] - v.w / 2, y: at[1] - v.h / 2 });
-  updateView();
-}
-
-function setupMapInput() {
-  const svg = $('map');
-  const pointers = new Map();
-  let drag = null, pinch = null, moved = false;
-
-  svg.addEventListener('wheel', e => {
-    if (!state.map) return;
-    e.preventDefault();
-    zoomAt(Math.exp(e.deltaY * 0.0015), ...toMap(e.clientX, e.clientY));
-  }, { passive: false });
-
-  svg.addEventListener('pointerdown', e => {
-    svg.setPointerCapture(e.pointerId);
-    pointers.set(e.pointerId, [e.clientX, e.clientY]);
-    moved = false;
-    if (pointers.size === 1) {
-      drag = { x: e.clientX, y: e.clientY, view: { ...state.view } };
-    } else if (pointers.size === 2) {
-      const [a, b] = [...pointers.values()];
-      pinch = { dist: Math.hypot(a[0] - b[0], a[1] - b[1]), view: { ...state.view }, mid: toMap((a[0] + b[0]) / 2, (a[1] + b[1]) / 2) };
-      drag = null;
-    }
-  });
-
-  svg.addEventListener('pointermove', e => {
-    if (!pointers.has(e.pointerId)) { hoverTip(e); return; }
-    pointers.set(e.pointerId, [e.clientX, e.clientY]);
-    const box = svg.getBoundingClientRect();
-    if (pinch && pointers.size === 2) {
-      const [a, b] = [...pointers.values()];
-      state.view = pinch.view;
-      zoomAt(pinch.dist / Math.max(20, Math.hypot(a[0] - b[0], a[1] - b[1])), ...pinch.mid);
-      moved = true;
-    } else if (drag) {
-      const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
-      if (Math.abs(dx) + Math.abs(dy) > 4) moved = true;
-      if (!moved) return;
-      svg.classList.add('drag');
-      const v = drag.view;
-      state.view = clampView({ ...v, x: v.x - dx / box.width * v.w, y: v.y - dy / box.height * v.h });
-      updateView();
-      hideTip();
-    }
-  });
-
-  svg.addEventListener('pointerup', e => {
-    pointers.delete(e.pointerId);
-    if (pointers.size < 2) pinch = null;
-    if (pointers.size === 0) {
-      svg.classList.remove('drag');
-      if (!moved) {
-        const m = markerAt(e);
-        if (m) select(m._loc.id);
-      }
-      drag = null;
-    }
-  });
-  svg.addEventListener('pointercancel', e => { pointers.delete(e.pointerId); drag = pinch = null; svg.classList.remove('drag'); });
-  svg.addEventListener('pointerleave', hideTip);
-
-  document.querySelectorAll('[data-zoom]').forEach(b => b.addEventListener('click', () => {
-    const v = state.view;
-    const c = [v.x + v.w / 2, v.y + v.h / 2];
-    if (b.dataset.zoom === 'in') zoomAt(0.7, ...c);
-    else if (b.dataset.zoom === 'out') zoomAt(1 / 0.7, ...c);
-    else fitView();
-  }));
-  window.addEventListener('resize', () => state.map && fitView());
-}
-
-function markerAt(e) {
-  return document.elementFromPoint(e.clientX, e.clientY)?.closest('.mk');
-}
-
-function hoverTip(e) {
-  const m = markerAt(e);
-  if (!m) { hideTip(); return; }
-  const l = m._loc;
+function hoverTip(l, e) {
+  if (!l) { hideTip(); return; }
   let tip = document.querySelector('.tip');
   if (!tip) {
     tip = document.createElement('div');
@@ -338,7 +183,7 @@ function renderList() {
     html += '</ul>';
   }
   $('list').innerHTML = html || '<p class="empty">Ничего не найдено</p>';
-  for (const g of state.markers) g.classList.toggle('dim', !visible.has(g._loc.id));
+  for (const g of state.mv.markers()) g.classList.toggle('dim', !visible.has(g._item.id));
 }
 
 /* ---------- Detail ---------- */
@@ -350,7 +195,7 @@ function showList() {
 }
 
 function highlight(id) {
-  for (const g of state.markers) g.classList.toggle('on', g._loc.id === id);
+  for (const g of state.mv.markers()) g.classList.toggle('on', g._item.id === id);
   document.querySelectorAll('#list li').forEach(li => li.classList.toggle('on', li.dataset.id === id));
 }
 
@@ -362,7 +207,7 @@ function select(id, { reveal: bring = false } = {}) {
   go(state.selected);
   if (!l) { showList(); return; }
   showDetail(l);
-  if (bring) requestAnimationFrame(() => reveal(point(l)));
+  if (bring) requestAnimationFrame(() => state.mv.reveal(l));
 }
 
 function showDetail(l) {
@@ -440,7 +285,7 @@ function setupSide() {
 }
 
 async function start() {
-  setupMapInput();
+  state.mv = createMapView($('map'), { onPick: l => select(l.id), onHover: hoverTip, buttons: $('mapview') });
   setupSide();
   renderChips();
   try {
