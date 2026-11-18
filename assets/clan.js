@@ -397,7 +397,9 @@ async function start() {
   if (!session) {
     const { error } = await state.sb.auth.signInAnonymously();
     if (error) {
-      showGate(`<h1>Не удалось подключиться</h1><p class="note">${esc(error.message)}</p>`);
+      const off = /anonymous sign-ins are disabled/i.test(error.message);
+      showGate(`<h1>Не удалось подключиться</h1><p class="note">${off
+        ? 'В настройках базы клана выключен анонимный вход. Сообщите админу клана.' : esc(error.message)}</p>`);
       return;
     }
   }
