@@ -13,7 +13,8 @@ const ERRORS = {
 };
 const CODE_ROLES = { viewer: 'Смотреть', marker: 'Ставить метки', admin: 'Админ', owner: 'Главный админ' };
 
-const state = { sb: null, me: null, data: null, map: null, marks: [], selected: null, mv: null, reloadTimer: null };
+const state = { sb: null, me: null, data: null, map: null, marks: [], selected: null, mv: null, reloadTimer: null,
+                pending: new Map(), seq: 0 };
 
 const can = need => RANK[state.me?.role] >= RANK[need];
 
@@ -186,20 +187,44 @@ function drawPoint(g, p) {
 
 function renderLegend() {
   $('legend').innerHTML = `<div class="keys"><span><i class="kd"></i>свободна</span><span><i class="kd marked"></i>отмечена</span>
-    ${can('marker') ? '<span>клик по точке — поставить или снять метку</span>' : ''}</div>`;
+    ${can('marker') ? '<span>клик по точке — поставить или убрать свой ник</span>' : ''}</div>`;
 }
 
-// A click on a point: unmarked -> marked in the caller's name, marked (by anyone) -> unmarked.
-// Shown at once; the database confirms (or the marks are read again).
+// A click on a point puts the caller's nick on it, or takes it off (the other nicks stay). Shown at once. Until the database answers, the click's state wins over the marks read meanwhile
+// (2026-11-18: quick clicks on several points made them blink on-off-on, as if clicked 2-3 times);
+// the wanted state is sent, not a toggle, so requests arriving out of order cannot flip it back.
 async function toggleMark(p) {
-  const me = state.me;
-  const off = state.marks.some(m => m.point === p.id);
-  state.marks = state.marks.filter(m => m.point !== p.id);
-  if (!off) state.marks.push({ user_id: me.id, point: p.id, nick: me.nick, created_at: new Date().toISOString() });
+  const want = !state.marks.some(m => m.point === p.id && m.user_id === state.me.id);
+  const seq = ++state.seq;
+  state.pending.set(p.id, { want, seq });
+  showMarks(state.marks);
+  try {
+    await rpc(want ? 'clan_mark' : 'clan_unmark', { p_point: p.id });
+  } catch (err) {
+    alert(errorText(err));
+  } finally {
+    if (state.pending.get(p.id)?.seq === seq) state.pending.delete(p.id);
+  }
+  if (!state.pending.size) await loadMarks();
+}
+
+// The marks with the caller's clicks still on their way laid over them.
+function withPending(marks) {
+  if (!state.pending.size) return marks;
+  const me = state.me.id;
+  const out = marks.filter(m => !(m.user_id === me && state.pending.has(m.point)));
+  for (const [point, { want }] of state.pending) {
+    const had = marks.find(m => m.point === point && m.user_id === me);
+    if (want) out.push(had || { user_id: me, point, nick: state.me.nick, created_at: new Date().toISOString() });
+  }
+  return out;
+}
+
+function showMarks(marks) {
+  state.marks = withPending(marks);
   redrawPoints();
   renderPoint();
   renderMarks();
-  await act(() => rpc('clan_toggle', { p_point: p.id }));
 }
 
 function pick(p) {
@@ -235,7 +260,7 @@ function renderPoint() {
   if (!p) return;
   const here = marksAt(p.id);
   const actions = can('marker')
-    ? `<p class="note">${here.length ? 'Клик по точке ещё раз — снять метку.' : 'Клик по точке — поставить метку.'}</p>`
+    ? `<p class="note">${here.some(m => m.user_id === state.me.id) ? 'Клик по точке ещё раз — убрать свой ник.' : 'Клик по точке — поставить свой ник.'}</p>`
     : '';
   $('pointPane').innerHTML = `
     <div class="pane-head"><h2>${esc(p.name)}</h2><button type="button" class="x" data-act="close" aria-label="Закрыть">✕</button></div>
@@ -249,7 +274,7 @@ function renderPoint() {
 function markRow(m) {
   const mine = m.user_id === state.me.id;
   const where = pointName(m.point);
-  const remove = can('marker') ? `<button type="button" class="x" data-unmark="${esc(m.point)}" title="Снять метку">✕</button>` : '';
+  const remove = can('marker') ? `<button type="button" class="x" data-unmark="${esc(m.point)}" data-user="${m.user_id}" title="Снять метку">✕</button>` : '';
   return `<li class="${mine ? 'mine' : ''}" data-point="${esc(m.point)}">
     <div><b>${esc(m.nick)}</b> <span class="note">${ago(m.created_at)}</span><br>
       <span class="where">${esc(where.name)}</span> <span class="note">· ${esc(where.map)}</span></div>${remove}</li>`;
@@ -266,10 +291,7 @@ function renderMarks() {
 async function loadMarks() {
   const { data, error } = await state.sb.from('clan_marks').select('user_id, point, nick, created_at');
   if (error) return;
-  state.marks = data || [];
-  redrawPoints();
-  renderPoint();
-  renderMarks();
+  showMarks(data || []);
 }
 
 function scheduleReload() {
@@ -391,7 +413,7 @@ function setup() {
     if (t.dataset.act === 'close') select(null);
     else if (t.dataset.unmark) {
       e.stopPropagation();
-      act(() => rpc('clan_unmark', { p_point: t.dataset.unmark }));
+      act(() => rpc('clan_unmark', { p_point: t.dataset.unmark, p_user: t.dataset.user }));
     } else if (t.dataset.point) {
       const [mapId, pointId] = t.dataset.point.split('/');
       location.hash = `#${mapId}/${pointId}`;
