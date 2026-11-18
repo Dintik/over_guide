@@ -1,0 +1,4601 @@
+{
+ "source": "тексты клиента Overkings (XMLResourceId_resourcesXMLVersion) и XML карт (mapXML6, mapXML7); на картах герой не был - привязки объектов к точкам карты, владельцев и уровней нет",
+ "resource_types": {
+  "1": "Ферма",
+  "2": "Каменоломня",
+  "3": "Лесопилка",
+  "4": "Шахта",
+  "5": "Золотая шахта",
+  "6": "Источник светлой энергии",
+  "7": "Источник темной энергии"
+ },
+ "terms": {
+  "achieve.desc.castle_terror": "Напасть на замок и победить ${x} раз подряд.",
+  "achieve.desc.gifted_robber": "Принять участие и победить в ${x} грабежах шахт подряд.",
+  "achieve.desc.hero_of_yvernia": "Сразить ${x} разных эпических боссов.",
+  "achieve.desc.john_mcclain": "Стоять на защите замка в одиночку и одержать победу ${x} раз.",
+  "achieve.desc.master_of_yvernia": "Принести больше всех осадных очков на успешных осадах за месяц.",
+  "achieve.desc.rambo": "Стоять на захвате замка в одиночку и одержать победу ${x} раз.",
+  "achieve.desc.resident_of_yvernia": "Получить несколько недельных подарков: ${x}",
+  "achieve.desc.robber": "Ограбить ${x} шахт.",
+  "achieve.desc.shoulder_to_shoulder": "Ограбить ${x} шахт только с участниками своего клана.",
+  "achieve.desc.threat_of_yvernia": "Ограбить больше всех шахт за 7 дн.",
+  "achieve.desc.together_again": "Объединяться в группу с одним и тем же игроком минимум 1 раз в сутки в течение ${x} дн.",
+  "achieve.desc.together_forever": "Привести в клан ${x} взаимных друзей минимум 5 уровня.",
+  "achieve.desc.together_we_are_strong": "Участвовать в осаде с участниками своего клана и захватить несколько замков.",
+  "achieve.desc.work_well_together": "Сразить ${x} эпических боссов в группе с ${y} участниками своего клана.",
+  "achieve.name.castle_terror": "Гроза замков",
+  "achieve.name.gifted_robber": "Одаренный грабитель",
+  "achieve.name.hero_of_yvernia": "Герой Ивернии",
+  "achieve.name.john_mcclain": "Крепкий орешек",
+  "achieve.name.master_of_yvernia": "Властитель Ивернии",
+  "achieve.name.rambo": "Зови меня Чак",
+  "achieve.name.resident_of_yvernia": "Житель Ивернии",
+  "achieve.name.robber": "Грабитель",
+  "achieve.name.shoulder_to_shoulder": "Плечом к плечу",
+  "achieve.name.threat_of_yvernia": "Гроза Ивернии",
+  "achieve.name.together_again": "И снова вместе",
+  "achieve.name.together_forever": "Всегда вместе",
+  "achieve.name.together_we_are_strong": "Вместе мы сила",
+  "achieve.name.work_well_together": "Сработались",
+  "terms.advm.block_castle_bf": "Вы не можете участвовать в боях за этот замок еще ${time}",
+  "terms.advm.block_castle_confirm": "Если вы войдете на поле боя, вы не сможете участвовать в битвах за другие замки в течение 24 часов. Войти на поле боя?",
+  "terms.advm.fight_message": "Идет разграбление шахты",
+  "terms.advm.prepare_message": "Идет подготовка к разграблению",
+  "terms.advm.siege_castle_owner_prohibited": "Кланам с замками запрещено участвовать в налетах.",
+  "terms.buff.group.castle": "Бонусы за владение замками",
+  "terms.castle.auction_bid": "Поставить",
+  "terms.castle.auction_diamonds": "алмазов",
+  "terms.castle.auction_lead": "Сейчас ваша ставка лидирует!<br>Следующая минимальная ставка:<br>${count}",
+  "terms.castle.auction_minbid": "Для начала торгов сделайте ставку:<br>${count}",
+  "terms.castle.auction_put": "Поставить:",
+  "terms.castle.auction_status_points": "очков статуса",
+  "terms.castle.auction_title": "${name}\nНапасть на объект можно через:",
+  "terms.castle.available_for_grabs": "Свободна для захвата",
+  "terms.castle.bank_overflow": "Хранилище замка ${name} переполнено",
+  "terms.castle.battle_clan": "Осаждающий клан:",
+  "terms.castle.battle_time": "Время до окончания осады:",
+  "terms.castle.belongs_to_the_castle": "Принадлежит замку ${castlename}",
+  "terms.castle.belongs_to_the_clan": "Принадлежит клану ${clanname}",
+  "terms.castle.besieging_clan": "Право на осаду принадлежит клану:",
+  "terms.castle.bid_time": "До конца торгов осталось:",
+  "terms.castle.cant_money_put_in_castle_bank": "Вы не можете класть деньги в хранилище замка",
+  "terms.castle.cant_money_take_from_castle_bank": "Вы не можете забирать деньги из хранилища замка",
+  "terms.castle.cant_put_in_castle_bank": "Вы не можете класть предметы в хранилище замка",
+  "terms.castle.cant_slot_put_in_castle_bank": "Вы не можете расширять хранилище",
+  "terms.castle.cant_take_from_castle_bank": "Вы не можете забирать предметы из хранилища замка",
+  "terms.castle.capture_is_possible_through": "Следующий захват возможен через ${date}",
+  "terms.castle.castle_battlefield": "Поле боя",
+  "terms.castle.castle_bonuses": "Бонусы:",
+  "terms.castle.castle_bonuses_gates": "Усиление ворот:",
+  "terms.castle.castle_bonuses_gates_next": "Усиление ворот на ${level} уровне:",
+  "terms.castle.castle_bonuses_next": "Бонусы на ${level} уровне:",
+  "terms.castle.castle_castle_bank": "Хранилище",
+  "terms.castle.castle_lead": "Ваша ставка лидирует",
+  "terms.castle.castle_level": "Уровень замка:",
+  "terms.castle.castle_level_next": "Следующий уровень замка:",
+  "terms.castle.castle_outbid": "Ставка на право захвата замка ${name} перебита",
+  "terms.castle.castle_status_point_auction": "Торги",
+  "terms.castle.clan_bank_no_slots": "Закончилось место в банке",
+  "terms.castle.confirm": "Вы уверены?",
+  "terms.castle.current_guard": "Текущая стража: ${level} уровень",
+  "terms.castle.guard": "Стража территории замка",
+  "terms.castle.guard_acting": "Текущий уровень усиления:",
+  "terms.castle.guard_available": "Доступный уровень усиления:",
+  "terms.castle.guard_count": "Количество стражников:",
+  "terms.castle.guard_next": "Следующий уровень усиления:",
+  "terms.castle.guard_upkeep": "Стоимость содержания:",
+  "terms.castle.is_looting": "Идет разграбление",
+  "terms.castle.is_the_capture": "Идет захват",
+  "terms.castle.last_attempt_to_capture_failed": "Последняя попытка захвата неудачна",
+  "terms.castle.levelup": "Повысить уровень",
+  "terms.castle.levelup_castle": "Повысить уровень замка",
+  "terms.castle.levelup_guard": "Повысить уровень стражи",
+  "terms.castle.level_power": "${level} (Мощь ${power})",
+  "terms.castle.max_guard": "Доступная стража: ${level} уровень",
+  "terms.castle.max_guard_next": "Доступная стража на ${level} уровне: ${level2} уровень",
+  "terms.castle.max_res_point": "Развитие ресурсных точек до ${level} уровня",
+  "terms.castle.neutral_message": "Ресурсная точка заброшена и не может быть разграблена",
+  "terms.castle.neutral_point": "Нейтральная точка",
+  "terms.castle.nomoney": "В хранилище недостаточно денег",
+  "terms.castle.notify_auction_completed": "Разграбление ресурсных точек начнется через ${time}",
+  "terms.castle.notify_auction_completed_attacker": "Вы выиграли торги на право разграбления ресурсной точки ${point_name}. Разграбление может быть начато через ${time}",
+  "terms.castle.notify_capture": "Нейтральный замок ${castle} захвачен кланом ${attacker}.",
+  "terms.castle.notify_capture_barbarian": "Замок ${castle} разграблен налетчиками и более не принадлежит клану ${defender}.",
+  "terms.castle.notify_capture_owner": "Замок ${castle}, принадлежавший клану ${defender}, захвачен кланом ${attacker}.",
+  "terms.castle.notify_capture_queue_position": "Позиция в очереди: ${position}",
+  "terms.castle.notify_fight_started": "Осада замка ${castle_name} началась",
+  "terms.castle.notify_nocapture": "Попытка захвата замка ${castle} кланом ${attacker} не удалась. Замок нейтральный.",
+  "terms.castle.notify_nocapture_barbarian": "Попытка захвата замка ${castle} налетчиками не удалась. Замок принадлежит клану ${defender}.",
+  "terms.castle.notify_nocapture_owner": "Попытка захвата замка ${castle} кланом ${attacker} не удалась. Замок принадлежит клану ${defender}.",
+  "terms.castle.notify_pillage_started": "Началось разграбление ресурсной точки ${point_name}",
+  "terms.castle.notify_pillage_started_attacker": "${point_name} может быть разграблена",
+  "terms.castle.notify_point_capture": "Ресурсная точка ${name} захвачена",
+  "terms.castle.notify_point_nocapture": "Попытка захвата ресурсной точки ${name} не удалась",
+  "terms.castle.notify_point_nopillage": "Разграбление ресурсной точки ${name} не удалось",
+  "terms.castle.notify_point_pillage": "Ресурсная точка ${name} разграблена",
+  "terms.castle.notify_start_capture": "Клан ${attacker} готов напасть на нейтральный замок ${castle}.",
+  "terms.castle.notify_start_capture_barbarian": "Налетчики готовы напасть на замок ${castle}, принадлежащий клану ${defender}.",
+  "terms.castle.notify_start_capture_owner": "Клан ${attacker} готов напасть на замок ${castle}, принадлежащий клану ${defender}.",
+  "terms.castle.notify_start_point": "Ресурсная точка ${name} доступна для разграбления",
+  "terms.castle.now_will_the_looting": "Сейчас начнется разграбление",
+  "terms.castle.or": "или",
+  "terms.castle.owner_clan": "Принадлежит клану:",
+  "terms.castle.owner_none": "Нейтральный замок",
+  "terms.castle.pay_guard": "Оплачивать содержание стражи",
+  "terms.castle.phase_auction": "Идут торги за право разграбления<br>До конца торгов осталось: ${time}",
+  "terms.castle.phase_fight": "Идет разграбление!<br>Право на разграбление принадлежит игроку: ${name}<br>До окончания разграбления: ${time}",
+  "terms.castle.phase_neutral": "Ресурсная точка заброшена и не может быть разграблена.",
+  "terms.castle.phase_prepare": "Торги за право разграбления закрыты<br>Право на разграбление принадлежит игроку: ${name}<br>До разграбления осталось ${time}",
+  "terms.castle.point_can_be_robbed": "Точка может быть ограблена",
+  "terms.castle.point_info": "Информация",
+  "terms.castle.point_not_captured": "Ресурсная точка не захвачена",
+  "terms.castle.point_outbid": "Ставка на право разграбления точки ${name} перебита",
+  "terms.castle.point_performance": "Производительность",
+  "terms.castle.point_production": "Производство",
+  "terms.castle.point_was_recently_robbed": "Точка была недавно ограблена",
+  "terms.castle.prepare_time": "До нападения осталось:",
+  "terms.castle.price_level": "Стоимость повышения:",
+  "terms.castle.robbery_is_not_possible": "Ограбление невозможно",
+  "terms.castle.robbery_is_not_possible_to_date": "Ограбление невозможно до ${date}",
+  "terms.castle.siege_complete": "Осады замков завершены",
+  "terms.castle.state_auction": "Торги за право осады открыты",
+  "terms.castle.state_battle": "Замок осажден",
+  "terms.castle.state_prepare": "Торги за право осады закрыты",
+  "terms.castle.territory": "Территория замка",
+  "terms.castle.title": "Замок",
+  "terms.castle.trade_complete": "Торги за право захвата замков завершены",
+  "terms.castle.upgrate": "Улучшить",
+  "terms.castle.upgrate_not_possible": "Максимальная выработка",
+  "terms.clan.permission.castle_manage": "Управлять замком",
+  "terms.clan.permission.castle_store_money_take": "Забирать деньги замка",
+  "terms.clan.permission.castle_store_put": "Добавлять в хранилище замка",
+  "terms.clan.permission.castle_store_take": "Брать из хранилища замка",
+  "terms.clan.permission.castle_store_view": "Просматривать хранилище замка",
+  "terms.inventory.castle_owner": "${castle_name}Бонусы за владение замком:\n<font color='#458500'>${rating_points} очков рейтинга</font> \n<font color='#458500'>${castle_bonus}</font> \n<font color='#ffffff'>Бонусы не работают на арене и осадах</font>",
+  "terms.mail.attack_castle_body": "Поздравляем!\\n\nВам удалось захватить замок ${castle} – и теперь он по праву принадлежит вашему клану. Примите с гордостью эту награду за помощь в расширении клановых владений. Так держать!",
+  "terms.mail.attack_castle_subject": "Замок захвачен!",
+  "terms.mail.defend_castle_body": "Штурм вашего кланового замка ${castle} успешно отражен! Примите эти зачарованные алмазы в награду за участие в защите клановых владений.",
+  "terms.mail.defend_castle_subject": "Замок ${castle}",
+  "terms.mail.scavenge_siege_fail_body": "Вам и другим налетчикам не удалось победить защитников замка ${castle}. Но в процессе боя вы успели прихватить немного Зачарованных Алмазов!",
+  "terms.mail.scavenge_siege_fail_subject": "Штурм замка не удался!",
+  "terms.mail.scavenge_siege_success_body": "Поздравляем!\\n\nВам вместе с другими налетчиками удалось разграбить замок ${castle} и унести с собой достойную добычу. Отличный ход, но, может, в следующий раз стоит побороться за более ценный приз – сам замок? Желаем успехов в следующих сражениях!",
+  "terms.mail.scavenge_siege_success_subject": "Замок разграблен!"
+ },
+ "maps": {
+  "tuamor": {
+   "id": 7,
+   "name": "Туамор",
+   "regions": [
+    "Земли замка Эвенгам",
+    "Замок Эвенгам",
+    "Земли замка Крагенхольм",
+    "Замок Крагенхольм",
+    "Земли замка Эффер",
+    "Замок Эффер",
+    "Земли замка Румеон",
+    "Замок Румеон",
+    "Земли замка Кармезон",
+    "Замок Кармезон",
+    "Клезенские земли"
+   ],
+   "castles": [
+    {
+     "name": "Башня Эвенгам",
+     "service_ids": [
+      743
+     ],
+     "description": "Долгие годы этот замок был резиденцией Прокаженного Принца, наводившего ужас на всю округу",
+     "territory": [
+      "Земли замка Эвенгам",
+      "Замок Эвенгам"
+     ],
+     "points": [
+      "_srv_1"
+     ],
+     "service_types": {
+      "743": "CASTLE_FORT"
+     }
+    },
+    {
+     "name": "Башня Кармезон",
+     "service_ids": [
+      856
+     ],
+     "description": "Здесь Черный Пророк воздвиг свой престол, и здесь он был сражен благородным графом Клермоном",
+     "territory": [
+      "Земли замка Кармезон",
+      "Замок Кармезон"
+     ],
+     "points": [
+      "_srv_64"
+     ],
+     "service_types": {
+      "856": "CASTLE_FORT"
+     }
+    },
+    {
+     "name": "Шато-Румеон",
+     "service_ids": [
+      857
+     ],
+     "description": "В этом небольшом замке родился и вырос граф Клермон - один из славнейших рыцарей Конхобара",
+     "territory": [
+      "Земли замка Румеон",
+      "Замок Румеон"
+     ],
+     "points": [
+      "_srv_67"
+     ],
+     "service_types": {
+      "857": "CASTLE_FORT"
+     }
+    },
+    {
+     "name": "Цитадель Эффер",
+     "service_ids": [
+      858
+     ],
+     "description": "Последний граф Эффер убил своего единственного наследника печатью за то, что тот нарушил какой-то параграф из свода местных правил",
+     "territory": [
+      "Земли замка Эффер",
+      "Замок Эффер"
+     ],
+     "points": [
+      "_srv_41"
+     ],
+     "service_types": {
+      "858": "CASTLE_FORT"
+     }
+    },
+    {
+     "name": "Форт Крагенхольм",
+     "service_ids": [
+      859
+     ],
+     "description": "В этом замке отставной маршал Фарагут окончательно сошел с ума и объявил войну луне и звездам",
+     "territory": [
+      "Земли замка Крагенхольм",
+      "Замок Крагенхольм"
+     ],
+     "points": [
+      "_srv_13"
+     ],
+     "service_types": {
+      "859": "CASTLE_FORT"
+     }
+    }
+   ],
+   "gates": [
+    {
+     "name": "Врата Судьбы",
+     "service_ids": [
+      746,
+      986
+     ],
+     "description": "\"Это не ворота замка, это - врата судьбы\" - сказал Прокаженный Принц, сосланный в Эвенгам за свою страшную болезнь",
+     "points": [
+      "_srv_5"
+     ],
+     "service_types": {
+      "746": "CASTLE_GATE",
+      "986": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Ворота Червя",
+     "service_ids": [
+      764,
+      766
+     ],
+     "description": "У этих ворот явился Огненный Червь, возвестивший пришествие Черного Пророка",
+     "points": [
+      "_srv_60"
+     ],
+     "service_types": {
+      "764": "CASTLE_GATE",
+      "766": "STATUS_POINT_AUCTION"
+     }
+    },
+    {
+     "name": "Вдовьи ворота",
+     "service_ids": [
+      769
+     ],
+     "description": "Отсюда графиня Клермон смотрела на дорогу, тщетно ожидая возвращения своего мужа, павшего на чужбине",
+     "points": [
+      "_srv_68"
+     ],
+     "service_types": {
+      "769": "CASTLE_GATE"
+     }
+    },
+    {
+     "name": "Сабельные ворота",
+     "service_ids": [
+      775
+     ],
+     "description": "В прежние времена у этих ворот всегда стояли двое часовых с саблями наголо",
+     "points": [
+      "_srv_42"
+     ],
+     "service_types": {
+      "775": "CASTLE_GATE"
+     }
+    },
+    {
+     "name": "Маршаловы ворота",
+     "service_ids": [
+      780
+     ],
+     "description": "Со времен безумца Фарагута каждого, кто проезжает эти ворота, заставляют кричать: \"Да здравствует маршал!\"",
+     "points": [
+      "_srv_11"
+     ],
+     "service_types": {
+      "780": "CASTLE_GATE"
+     }
+    }
+   ],
+   "castle_buildings": [
+    {
+     "name": "Хранилище Северо-Западного Замка",
+     "service_ids": [
+      745
+     ],
+     "description": "",
+     "points": [
+      "_srv_1"
+     ],
+     "service_types": {
+      "745": "CASTLE_BANK"
+     }
+    },
+    {
+     "name": "АукцЫон",
+     "service_ids": [
+      747
+     ],
+     "description": "",
+     "points": [
+      "_srv_5"
+     ],
+     "service_types": {
+      "747": "STATUS_POINT_AUCTION"
+     }
+    }
+   ],
+   "resource_points": [
+    {
+     "name": "Ферма Сверфен",
+     "service_ids": [
+      797,
+      976
+     ],
+     "description": "Над этой благословенной землей идет дождь даже во время засухи",
+     "type": 1,
+     "kind": "Ферма",
+     "resource": "Еда",
+     "points": [
+      "_srv_20"
+     ],
+     "service_types": {
+      "797": "RESOURCE_POINT",
+      "976": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Каменоломни Эревор",
+     "service_ids": [
+      799,
+      979
+     ],
+     "description": "Камень для мавзолея короля Форбанта брали именно здесь",
+     "type": 2,
+     "kind": "Каменоломня",
+     "resource": "Камень",
+     "points": [
+      "_srv_29"
+     ],
+     "service_types": {
+      "799": "RESOURCE_POINT",
+      "979": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Лесопилка Зиген",
+     "service_ids": [
+      800,
+      978
+     ],
+     "description": "Тетушка Зиген уверяет, что копье Роллана Храброго было сделано из ясеня, спиленного в этих местах",
+     "type": 3,
+     "kind": "Лесопилка",
+     "resource": "Древесина",
+     "points": [
+      "_srv_34"
+     ],
+     "service_types": {
+      "800": "RESOURCE_POINT",
+      "978": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Шахта Волтон",
+     "service_ids": [
+      801,
+      977
+     ],
+     "description": "Наместник Винемунд приказал сбросить в эту шахту волхва, предсказавшего его гибель",
+     "type": 4,
+     "kind": "Шахта",
+     "resource": "Металл",
+     "points": [
+      "_srv_27"
+     ],
+     "service_types": {
+      "801": "RESOURCE_POINT",
+      "977": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Колодец  Мирфуэль",
+     "service_ids": [
+      802,
+      980
+     ],
+     "description": "\"Мирфуэль - это дар Безымянного\" - так сказал Черный Пророк. \"Мирфуэль -это зло земли\", - так говорят в народе",
+     "type": 7,
+     "kind": "Источник темной энергии",
+     "resource": "Темная энергия",
+     "points": [
+      "_srv_33"
+     ],
+     "service_types": {
+      "802": "RESOURCE_POINT",
+      "980": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Святой источник Симридаль",
+     "service_ids": [
+      843,
+      981
+     ],
+     "description": "Эти места пропитаны силой, древней, как сама вселенная, и светлой, как сами звезды",
+     "type": 6,
+     "kind": "Источник светлой энергии",
+     "resource": "Светлая энергия",
+     "points": [
+      "_srv_53"
+     ],
+     "service_types": {
+      "843": "RESOURCE_POINT",
+      "981": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Ферма Дигнус",
+     "service_ids": [
+      860,
+      1006
+     ],
+     "description": "Местные крестьяне издревле дают отпор каждому, кто пытается обложить их данью",
+     "type": 1,
+     "kind": "Ферма",
+     "resource": "Еда",
+     "points": [
+      "_srv_19"
+     ],
+     "service_types": {
+      "860": "RESOURCE_POINT",
+      "1006": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Черный разлом Архалот",
+     "service_ids": [
+      901,
+      935,
+      1026
+     ],
+     "description": "Здесь с неба падают мертвые птицы, а земля выделяет трупный яд",
+     "type": 7,
+     "kind": "Источник темной энергии",
+     "resource": "Темная энергия",
+     "points": [
+      "_srv_32"
+     ],
+     "service_types": {
+      "901": "STATUS_POINT_AUCTION",
+      "935": "RESOURCE_POINT",
+      "1026": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Золотой прииск Хризогорг",
+     "service_ids": [
+      904,
+      1028
+     ],
+     "description": "\"Золото Хризогорга - это мост в будущее\", - сказал Прокаженный Принц, уходя в подполье после поражения в войне",
+     "type": 5,
+     "kind": "Золотая шахта",
+     "resource": "Золото",
+     "points": [
+      "_srv_16"
+     ],
+     "service_types": {
+      "904": "RESOURCE_POINT",
+      "1028": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Каменоломни Мерфель",
+     "service_ids": [
+      915,
+      1011
+     ],
+     "description": "Измученные рабочие прокляли эти каменоломни, и с тех пор работать там стало еще тяжелее",
+     "type": 2,
+     "kind": "Каменоломня",
+     "resource": "Камень",
+     "points": [
+      "_srv_44"
+     ],
+     "service_types": {
+      "915": "RESOURCE_POINT",
+      "1011": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Каменоломни Дювельнест",
+     "service_ids": [
+      916,
+      1012
+     ],
+     "description": "Скульпторы считают, что здешние камни красивы и легко поддаются обработке",
+     "type": 2,
+     "kind": "Каменоломня",
+     "resource": "Камень",
+     "points": [
+      "_srv_52"
+     ],
+     "service_types": {
+      "916": "RESOURCE_POINT",
+      "1012": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Рудник Хорас",
+     "service_ids": [
+      917,
+      1021
+     ],
+     "description": "Эта шахта так глубока, что шахтеры слышат, как подземные чудовища грызут днище земли. Или это им кажется",
+     "type": 4,
+     "kind": "Шахта",
+     "resource": "Металл",
+     "points": [
+      "_srv_45"
+     ],
+     "service_types": {
+      "917": "RESOURCE_POINT",
+      "1021": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Лесопилка Моуги",
+     "service_ids": [
+      918,
+      1016
+     ],
+     "description": "В священной роще туатского божества Моуги теперь валят лес. Вот почему туаты так ненавидят свефов",
+     "type": 3,
+     "kind": "Лесопилка",
+     "resource": "Древесина",
+     "points": [
+      "_srv_46"
+     ],
+     "service_types": {
+      "918": "RESOURCE_POINT",
+      "1016": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Ферма Бахвист",
+     "service_ids": [
+      919,
+      1010
+     ],
+     "description": "Именно здесь разбился Тимей Чародей, создавший первый эликсир левитации",
+     "type": 1,
+     "kind": "Ферма",
+     "resource": "Еда",
+     "points": [
+      "_srv_65"
+     ],
+     "service_types": {
+      "919": "RESOURCE_POINT",
+      "1010": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Каменоломни Мюнтакан",
+     "service_ids": [
+      920,
+      1013
+     ],
+     "description": "Наместник Винемунд распорядился ссылать сюда каждого рабочего, что сумеет выговорить слово \"эксплуатация\"",
+     "type": 2,
+     "kind": "Каменоломня",
+     "resource": "Камень",
+     "points": [
+      "_srv_66"
+     ],
+     "service_types": {
+      "920": "RESOURCE_POINT",
+      "1013": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Лесопилка Скогги",
+     "service_ids": [
+      921,
+      1017
+     ],
+     "description": "Отставной берсерк Скогги рубил деревья так же рьяно как когда-то головы",
+     "type": 3,
+     "kind": "Лесопилка",
+     "resource": "Древесина",
+     "points": [
+      "_srv_55"
+     ],
+     "service_types": {
+      "921": "RESOURCE_POINT",
+      "1017": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Ферма Убентром",
+     "service_ids": [
+      922,
+      1009
+     ],
+     "description": "Крестьянские дети с этой фермы поверили проповедям Черного Пророка и перебили своих родителей",
+     "type": 1,
+     "kind": "Ферма",
+     "resource": "Еда",
+     "points": [
+      "_srv_72"
+     ],
+     "service_types": {
+      "922": "RESOURCE_POINT",
+      "1009": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Рудник Стребен",
+     "service_ids": [
+      923,
+      1022
+     ],
+     "description": "Когда-то этот рудник посетил сам король Форбант, о чем свидетельствует мемориальная доска",
+     "type": 4,
+     "kind": "Шахта",
+     "resource": "Металл",
+     "points": [
+      "_srv_73"
+     ],
+     "service_types": {
+      "923": "RESOURCE_POINT",
+      "1022": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Рудник Борген",
+     "service_ids": [
+      924,
+      1023
+     ],
+     "description": "Шахтерский клан Борген уже много поколений не выходит на поверхность. Эти люди слепы, а их кожа прозрачна как слюда",
+     "type": 4,
+     "kind": "Шахта",
+     "resource": "Металл",
+     "points": [
+      "_srv_76"
+     ],
+     "service_types": {
+      "924": "RESOURCE_POINT",
+      "1023": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Каменоломни Вертон",
+     "service_ids": [
+      925,
+      1014
+     ],
+     "description": "Время от времени на здешних камнях появляются пылающие письмена, которых никто не может прочитать",
+     "type": 2,
+     "kind": "Каменоломня",
+     "resource": "Камень",
+     "points": [
+      "_srv_59"
+     ],
+     "service_types": {
+      "925": "RESOURCE_POINT",
+      "1014": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Лесопилка Озмун",
+     "service_ids": [
+      926,
+      1019
+     ],
+     "description": "Прежние хозяева безуспешно пытались заставить валить деревья дрессированных офирских обезьян",
+     "type": 3,
+     "kind": "Лесопилка",
+     "resource": "Древесина",
+     "points": [
+      "_srv_58"
+     ],
+     "service_types": {
+      "926": "RESOURCE_POINT",
+      "1019": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Лесопилка Амигут",
+     "service_ids": [
+      927,
+      1018
+     ],
+     "description": "На эту лесопилку никто никогда не нападает. Но раз в год кто-то из рабочих превращается в дерево",
+     "type": 3,
+     "kind": "Лесопилка",
+     "resource": "Древесина",
+     "points": [
+      "_srv_49"
+     ],
+     "service_types": {
+      "927": "RESOURCE_POINT",
+      "1018": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Ферма Сальпех",
+     "service_ids": [
+      928,
+      1008
+     ],
+     "description": "Сальпехских мужиков не любят за злобный нрав. Но пшеница у них отменная",
+     "type": 1,
+     "kind": "Ферма",
+     "resource": "Еда",
+     "points": [
+      "_srv_38"
+     ],
+     "service_types": {
+      "928": "RESOURCE_POINT",
+      "1008": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Рудник Фольсехог",
+     "service_ids": [
+      929,
+      1015
+     ],
+     "description": "По преданию, эта шахта - ни что иное как древнее гнездо короля жуков Фольсехога",
+     "type": 4,
+     "kind": "Шахта",
+     "resource": "Металл",
+     "points": [
+      "_srv_24"
+     ],
+     "service_types": {
+      "929": "RESOURCE_POINT",
+      "1015": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Шахта Меревег",
+     "service_ids": [
+      930,
+      1024
+     ],
+     "description": "Многие искатели Чаши Славы уверены, что граф Клермон спрятал ее именно в этой шахте",
+     "type": 4,
+     "kind": "Шахта",
+     "resource": "Металл",
+     "points": [
+      "_srv_26"
+     ],
+     "service_types": {
+      "930": "RESOURCE_POINT",
+      "1024": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Шахта Эброн",
+     "service_ids": [
+      931,
+      1025
+     ],
+     "description": "Здешние рудокопы отличаются малым ростом и кряжестым телосложением. Может быть, в их жилах и правда течет гномья кровь",
+     "type": 4,
+     "kind": "Шахта",
+     "resource": "Металл",
+     "points": [
+      "_srv_17"
+     ],
+     "service_types": {
+      "931": "RESOURCE_POINT",
+      "1025": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Лесопилка Номбольта",
+     "service_ids": [
+      933,
+      1020
+     ],
+     "description": "Ни один гном до Номбольта не работал с деревом. Номбольт изменил традициям своего народа, но зато разбогател",
+     "type": 3,
+     "kind": "Лесопилка",
+     "resource": "Древесина",
+     "points": [
+      "_srv_9"
+     ],
+     "service_types": {
+      "933": "RESOURCE_POINT",
+      "1020": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Золотой прииск ДеБирц",
+     "service_ids": [
+      934,
+      1029
+     ],
+     "description": "Когда умрет последний представитель лепреконского клана ДеБирц, золото исчезнет из этой шахты",
+     "type": 5,
+     "kind": "Золотая шахта",
+     "resource": "Золото",
+     "points": [
+      "_srv_18"
+     ],
+     "service_types": {
+      "934": "RESOURCE_POINT",
+      "1029": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Чудесный родник Марион",
+     "service_ids": [
+      936,
+      1027
+     ],
+     "description": "Вокруг этого места разлиты покой и нега. Но мудрец почувствует здесь присутствие великой силы",
+     "type": 6,
+     "kind": "Источник светлой энергии",
+     "resource": "Светлая энергия",
+     "points": [
+      "_srv_75"
+     ],
+     "service_types": {
+      "936": "RESOURCE_POINT",
+      "1027": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Ферма Зорхаль",
+     "service_ids": [
+      1007,
+      1035
+     ],
+     "description": "На этой ферме безумный маршал Фарагут пытался вырастить помидорокапусту и сливоананас",
+     "type": 1,
+     "kind": "Ферма",
+     "resource": "Еда",
+     "points": [
+      "_srv_10"
+     ],
+     "service_types": {
+      "1007": "BATTLEFIELD",
+      "1035": "RESOURCE_POINT"
+     }
+    }
+   ],
+   "workshops": 5,
+   "npc_and_shops": [
+    {
+     "name": "Ревизор Оттон",
+     "service_ids": [
+      913
+     ],
+     "description": "Раньше здесь располагался небольшой гарнизон, охранявший Королевский тракт. Теперь здесь резиденция королевского ревизора, которого присылают из столицы, чтобы следить за порядком",
+     "points": [
+      "_srv_7"
+     ],
+     "service_types": {
+      "913": "NPC"
+     }
+    },
+    {
+     "name": "Дом у дороги",
+     "service_ids": [
+      914
+     ],
+     "description": "У дороги стоит чистенькая усадьба, окруженная ухоженными огородами",
+     "points": [
+      "_srv_6"
+     ],
+     "service_types": {
+      "914": "SHOP"
+     }
+    },
+    {
+     "name": "Норма",
+     "service_ids": [
+      941
+     ],
+     "description": "Норма – хозяйка харчевни \"У Большой медведицы\". \"Большая медведица\" - это огромный ковш, в который наливают пиво. Гость, осиливший этот ковш, ужинает бесплатно.",
+     "points": [
+      "_srv_12"
+     ],
+     "service_types": {
+      "941": "NPC"
+     }
+    },
+    {
+     "name": "Салон \"Третье ухо\"",
+     "service_ids": [
+      942
+     ],
+     "description": "Пройдите обучение у господина Парего, и у вас откроется третье ухо. А можете просто купить его товары.",
+     "points": [
+      "_srv_15"
+     ],
+     "service_types": {
+      "942": "SHOP"
+     }
+    },
+    {
+     "name": "Дом Макуты",
+     "service_ids": [
+      943
+     ],
+     "description": "Макута доживает до ста двадцати лет и вновь обращается в маленькую девочку. Ее познания глубоки и обширны как у большинства бессмертных.",
+     "points": [
+      "_srv_62"
+     ],
+     "service_types": {
+      "943": "SHOP"
+     }
+    },
+    {
+     "name": "Тайра Гюрза",
+     "service_ids": [
+      944
+     ],
+     "description": "Тайра Гюрза управляет трактиром \"Званые кости\". Каждое полнолуние здесь гуляют \"другие\" гости. Их плоть истлела, но душа прикипела к кабацким забавам.",
+     "points": [
+      "_srv_63"
+     ],
+     "service_types": {
+      "944": "NPC"
+     }
+    },
+    {
+     "name": "Магазин \"Благословение Диты\"",
+     "service_ids": [
+      945
+     ],
+     "description": "Дита - один из немногих монахинь храма Восьми Героев, что практикует магию",
+     "points": [
+      "_srv_69"
+     ],
+     "service_types": {
+      "945": "SHOP"
+     }
+    },
+    {
+     "name": "Сестра Бригита",
+     "service_ids": [
+      946
+     ],
+     "description": "Сестра Бригита управляет постоялым двором \"Приют паладина\". В память о графе Клермоне странствующие рыцари обслуживаются со скидкой.",
+     "points": [
+      "_srv_71"
+     ],
+     "service_types": {
+      "946": "NPC"
+     }
+    },
+    {
+     "name": "Письмоводитель Митферт",
+     "service_ids": [
+      948
+     ],
+     "description": "Митферт – управляющий питейным домом \"Сухой закон\". Эфферские графы то разрешали пить вино, то снова запрещали.",
+     "points": [
+      "_srv_40"
+     ],
+     "service_types": {
+      "948": "NPC"
+     }
+    },
+    {
+     "name": "Департамент магических искусств",
+     "service_ids": [
+      949
+     ],
+     "description": "Магическими делами здесь заправляет чиновник из замка Эффер. Бюрократизм - одна из здешних традиций.",
+     "points": [
+      "_srv_39"
+     ],
+     "service_types": {
+      "949": "SHOP"
+     }
+    },
+    {
+     "name": "Театр ужасов доктора Гомункула",
+     "service_ids": [
+      950
+     ],
+     "description": "Вообще-то это обычный магазин магических товаров, но время от времени старина Гомункул устраивает представление с ожившими куклами и летающими черепами.",
+     "points": [
+      "_srv_2"
+     ],
+     "service_types": {
+      "950": "SHOP"
+     }
+    },
+    {
+     "name": "Робин Крюк",
+     "service_ids": [
+      951
+     ],
+     "description": "Робин Крюк – хозяин постоялого двора \"Три барана\". В этом заведении есть традиция: если посетитель затевает ссору, его сажают верхом на барана и возят вокруг двора.",
+     "points": [
+      "_srv_3"
+     ],
+     "service_types": {
+      "951": "NPC"
+     }
+    }
+   ],
+   "locations": [
+    {
+     "name": "Лес Фершвуд",
+     "service_ids": [
+      953
+     ],
+     "description": "Этот лес знаменит своими соловьями, которые умеют петь, подражая лучшим веронским певцам",
+     "points": [
+      "_srv_8"
+     ],
+     "service_types": {
+      "953": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Верганский лес",
+     "service_ids": [
+      955
+     ],
+     "description": "По легенде, Верганский лес ожил и в одну ночь истребил всех мятежников Прокаженного Принца",
+     "points": [
+      "_srv_31"
+     ],
+     "service_types": {
+      "955": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Дорога в Конхобар",
+     "service_ids": [
+      968
+     ],
+     "description": "Эта дорога ведет в столицу",
+     "portal": true,
+     "points": [
+      "_srv_79"
+     ],
+     "service_types": {
+      "968": "PORTAL"
+     }
+    },
+    {
+     "name": "Томорская пустошь",
+     "service_ids": [
+      971
+     ],
+     "description": "На глинистой почве почти ничего не растет. По преданию, эту землю вытоптал сам Броллохан Бессмертный.",
+     "points": [
+      "_srv_81"
+     ],
+     "service_types": {
+      "971": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Мидово редколесье",
+     "service_ids": [
+      972
+     ],
+     "description": "Капитан наемников Мид сказал, что туаты не смогут устроить засаду в таком редколесье. Он ошибался",
+     "points": [
+      "_srv_28"
+     ],
+     "service_types": {
+      "972": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Неверфельская равнина",
+     "service_ids": [
+      973
+     ],
+     "description": "Здесь мятежники Прокаженного Принца истребили войско короля Гарольда",
+     "points": [
+      "_srv_22"
+     ],
+     "service_types": {
+      "973": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Чаща Угги",
+     "service_ids": [
+      987
+     ],
+     "description": "Угги считал себя очень оригинальным разбойником: он грабил бедных и отдавал богатым",
+     "points": [
+      "_srv_21"
+     ],
+     "service_types": {
+      "987": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Савантов пустозем",
+     "service_ids": [
+      988
+     ],
+     "description": "На этих полях граф Клермон разбил конунга Канута Меднолобого",
+     "points": [
+      "_srv_23"
+     ],
+     "service_types": {
+      "988": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Роща Тротем",
+     "service_ids": [
+      989
+     ],
+     "description": "В этой роще Канут Меднолобый убил своего ученого ворона за то, что он присоветовал идти войной на Конхобар",
+     "points": [
+      "_srv_30"
+     ],
+     "service_types": {
+      "989": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Роща Ахиор",
+     "service_ids": [
+      990
+     ],
+     "description": "Именно здесь Канут Меднолобый надеялся найти сокровища мифического царя Адила",
+     "points": [
+      "_srv_25"
+     ],
+     "service_types": {
+      "990": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Урочище Свеберхор",
+     "service_ids": [
+      991
+     ],
+     "description": "Как и предсказывал волхв, наместник Винемунд нашел здесь свою смерть в клыках огромного вепря",
+     "points": [
+      "_srv_36"
+     ],
+     "service_types": {
+      "991": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Гвиордвинский лес",
+     "service_ids": [
+      992
+     ],
+     "description": "Древние дубравы до сих пор помнят песни туатских бардов. Говорят, в Гвиордвине прошлое сливается с будущим",
+     "points": [
+      "_srv_37"
+     ],
+     "service_types": {
+      "992": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Брунхольмская чаща",
+     "service_ids": [
+      993
+     ],
+     "description": "В этом лесу граф Клермон сразил собственную тень, восставшую против него",
+     "points": [
+      "_srv_35"
+     ],
+     "service_types": {
+      "993": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Бертемская равнина",
+     "service_ids": [
+      994
+     ],
+     "description": "Здешняя почва плодородна, но ни один крестьянин не коснется ее своим плугом. Вместо пшеницы эта земля родит скорпионов и ядовитых червей.",
+     "points": [
+      "_srv_78"
+     ],
+     "service_types": {
+      "994": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Урочище Мантог",
+     "service_ids": [
+      995
+     ],
+     "description": "Одни говорят, что в этом лесу всегда темно из-за густых деревьев. Другие - что здесь стоит вечная ночь",
+     "points": [
+      "_srv_47"
+     ],
+     "service_types": {
+      "995": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Оларов перелесок",
+     "service_ids": [
+      996
+     ],
+     "description": "Граф Эффер приказал лесничиму Олару пересчитать здесь каждую шишку. Призрак Олара не покинет лес, пока не закончит работу",
+     "points": [
+      "_srv_48"
+     ],
+     "service_types": {
+      "996": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Пустоземье Хонгервельд",
+     "service_ids": [
+      997
+     ],
+     "description": "Земля здесь не родит ничего, кроме камней и сорняков",
+     "points": [
+      "_srv_51"
+     ],
+     "service_types": {
+      "997": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Пустошь Весерхоль",
+     "service_ids": [
+      998
+     ],
+     "description": "Эти  земли непригодны для земледелия, но зато здесь можно гулять, не опасаясь лесных зверей",
+     "points": [
+      "_srv_50"
+     ],
+     "service_types": {
+      "998": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Атаканский лес",
+     "service_ids": [
+      999
+     ],
+     "description": "В старину здесь было туатское святилище Атакан. Может быть поэтому здешний воздух кажется особенно легким и прозрачным.",
+     "points": [
+      "_srv_82"
+     ],
+     "service_types": {
+      "999": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Поля Готроп",
+     "service_ids": [
+      1000
+     ],
+     "description": "В старину здесь прополз сам Мардукар Осквернитель, и с тех пор здесь не сеют и не пашут",
+     "points": [
+      "_srv_77"
+     ],
+     "service_types": {
+      "1000": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Стеорнский лес",
+     "service_ids": [
+      1001
+     ],
+     "description": "Старики говорят, что в этом лесу раз в десять лет расцветает папоротник",
+     "points": [
+      "_srv_54"
+     ],
+     "service_types": {
+      "1001": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Лес Виврин",
+     "service_ids": [
+      1002
+     ],
+     "description": "Легенды о Вивринском звере до сих пор будоражат некоторые умы",
+     "points": [
+      "_srv_56"
+     ],
+     "service_types": {
+      "1002": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Маллонские поля",
+     "service_ids": [
+      1003
+     ],
+     "description": "Семь дней и семь ночей граф Клермон ожидал здесь дракона Фарценталя, которого вызвал на бой. Как оказалось, дракон был выдумкой местных крестьян.",
+     "points": [
+      "_srv_80"
+     ],
+     "service_types": {
+      "1003": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Фитридова глухомань",
+     "service_ids": [
+      1004
+     ],
+     "description": "В книгах написано, что этот лес поднялся за одну ночь по приказу волшебника Фитрида",
+     "points": [
+      "_srv_57"
+     ],
+     "service_types": {
+      "1004": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Цитерлинский лес",
+     "service_ids": [
+      1005
+     ],
+     "description": "Крестьяне говорят, что деревья здесь переходят с места на место. Наверное, врут",
+     "points": [
+      "_srv_74"
+     ],
+     "service_types": {
+      "1005": "BATTLEFIELD"
+     }
+    }
+   ],
+   "map_points": [
+    {
+     "id": "_srv_1",
+     "x": -1,
+     "y": -3,
+     "width": 240,
+     "height": 284,
+     "markX": 123,
+     "markY": 44,
+     "nodes": [
+      26548
+     ]
+    },
+    {
+     "id": "_srv_10",
+     "x": 660,
+     "y": 181,
+     "width": 764,
+     "height": 486,
+     "markX": 229,
+     "markY": 76,
+     "nodes": [
+      26428,
+      26444
+     ]
+    },
+    {
+     "id": "_srv_11",
+     "x": 1382,
+     "y": 278,
+     "width": 280,
+     "height": 334,
+     "markX": 139,
+     "markY": 102,
+     "nodes": [
+      26456,
+      26528
+     ]
+    },
+    {
+     "id": "_srv_12",
+     "x": 1397,
+     "y": 217,
+     "width": 218,
+     "height": 192,
+     "markX": 110,
+     "markY": 51,
+     "nodes": [
+      26531
+     ]
+    },
+    {
+     "id": "_srv_13",
+     "x": 1470,
+     "y": 21,
+     "width": 346,
+     "height": 359,
+     "markX": 165,
+     "markY": 59,
+     "nodes": [
+      26538
+     ]
+    },
+    {
+     "id": "_srv_14",
+     "x": 1661,
+     "y": 330,
+     "width": 251,
+     "height": 176,
+     "markX": 118,
+     "markY": 34,
+     "nodes": [
+      26535
+     ]
+    },
+    {
+     "id": "_srv_15",
+     "x": 1738,
+     "y": 168,
+     "width": 200,
+     "height": 206,
+     "markX": 99,
+     "markY": 34,
+     "nodes": [
+      26537
+     ]
+    },
+    {
+     "id": "_srv_16",
+     "x": 2045,
+     "y": -1,
+     "width": 118,
+     "height": 182,
+     "markX": 60,
+     "markY": 21,
+     "nodes": [
+      26511
+     ]
+    },
+    {
+     "id": "_srv_17",
+     "x": 1956,
+     "y": 206,
+     "width": 264,
+     "height": 232,
+     "markX": 122,
+     "markY": 37,
+     "nodes": [
+      26486
+     ]
+    },
+    {
+     "id": "_srv_18",
+     "x": 2294,
+     "y": 27,
+     "width": 156,
+     "height": 188,
+     "markX": 76,
+     "markY": 46,
+     "nodes": [
+      26502
+     ]
+    },
+    {
+     "id": "_srv_19",
+     "x": 1,
+     "y": 307,
+     "width": 370,
+     "height": 510,
+     "markX": 238,
+     "markY": 230,
+     "nodes": [
+      25990
+     ]
+    },
+    {
+     "id": "_srv_2",
+     "x": 144,
+     "y": 14,
+     "width": 200,
+     "height": 174,
+     "markX": 99,
+     "markY": 16,
+     "nodes": [
+      26553
+     ]
+    },
+    {
+     "id": "_srv_20",
+     "x": 263,
+     "y": 330,
+     "width": 556,
+     "height": 434,
+     "markX": 215,
+     "markY": 99,
+     "nodes": [
+      25986,
+      26000
+     ]
+    },
+    {
+     "id": "_srv_21",
+     "x": 462,
+     "y": 254,
+     "width": 478,
+     "height": 307,
+     "markX": 168,
+     "markY": 47,
+     "nodes": [
+      26002,
+      26029,
+      26422
+     ]
+    },
+    {
+     "id": "_srv_22",
+     "x": 974,
+     "y": 545,
+     "width": 602,
+     "height": 257,
+     "markX": 268,
+     "markY": 46,
+     "nodes": [
+      26414,
+      26432,
+      26458
+     ]
+    },
+    {
+     "id": "_srv_23",
+     "x": 1194,
+     "y": 605,
+     "width": 464,
+     "height": 333,
+     "markX": 249,
+     "markY": 158,
+     "nodes": [
+      26462,
+      26520
+     ]
+    },
+    {
+     "id": "_srv_24",
+     "x": 1609,
+     "y": 538,
+     "width": 366,
+     "height": 304,
+     "markX": 166,
+     "markY": 93,
+     "nodes": [
+      26464,
+      26470,
+      26516
+     ]
+    },
+    {
+     "id": "_srv_25",
+     "x": 1905,
+     "y": 471,
+     "width": 398,
+     "height": 452,
+     "markX": 203,
+     "markY": 197,
+     "nodes": [
+      26292,
+      26302,
+      26474
+     ]
+    },
+    {
+     "id": "_srv_26",
+     "x": 2205,
+     "y": 397,
+     "width": 276,
+     "height": 268,
+     "markX": 154,
+     "markY": 69,
+     "nodes": [
+      26304
+     ]
+    },
+    {
+     "id": "_srv_27",
+     "x": 179,
+     "y": 657,
+     "width": 368,
+     "height": 296,
+     "markX": 164,
+     "markY": 104,
+     "nodes": [
+      26047
+     ]
+    },
+    {
+     "id": "_srv_28",
+     "x": 348,
+     "y": 552,
+     "width": 597,
+     "height": 399,
+     "markX": 298,
+     "markY": 5,
+     "nodes": [
+      26405
+     ]
+    },
+    {
+     "id": "_srv_29",
+     "x": 640,
+     "y": 499,
+     "width": 477,
+     "height": 327,
+     "markX": 236,
+     "markY": 96,
+     "nodes": [
+      26408,
+      26412
+     ]
+    },
+    {
+     "id": "_srv_3",
+     "x": 240,
+     "y": 64,
+     "width": 216,
+     "height": 176,
+     "markX": 97,
+     "markY": 39,
+     "nodes": [
+      26551
+     ]
+    },
+    {
+     "id": "_srv_30",
+     "x": 898,
+     "y": 728,
+     "width": 502,
+     "height": 306,
+     "markX": 225,
+     "markY": 130,
+     "nodes": [
+      26397
+     ]
+    },
+    {
+     "id": "_srv_31",
+     "x": 1512,
+     "y": 718,
+     "width": 634,
+     "height": 362,
+     "markX": 360,
+     "markY": 152,
+     "nodes": [
+      26290,
+      26307,
+      26522
+     ]
+    },
+    {
+     "id": "_srv_32",
+     "x": 2178,
+     "y": 778,
+     "width": 306,
+     "height": 218,
+     "markX": 164,
+     "markY": 57,
+     "nodes": [
+      26296
+     ]
+    },
+    {
+     "id": "_srv_33",
+     "x": 22,
+     "y": 792,
+     "width": 250,
+     "height": 246,
+     "markX": 122,
+     "markY": 77,
+     "nodes": [
+      26049
+     ]
+    },
+    {
+     "id": "_srv_34",
+     "x": 477,
+     "y": 729,
+     "width": 262,
+     "height": 246,
+     "markX": 137,
+     "markY": 70,
+     "nodes": [
+      26403
+     ]
+    },
+    {
+     "id": "_srv_35",
+     "x": 295,
+     "y": 871,
+     "width": 544,
+     "height": 360,
+     "markX": 261,
+     "markY": 126,
+     "nodes": [
+      26058,
+      26391
+     ]
+    },
+    {
+     "id": "_srv_36",
+     "x": 759,
+     "y": 935,
+     "width": 462,
+     "height": 372,
+     "markX": 242,
+     "markY": 150,
+     "nodes": [
+      26371,
+      26389
+     ]
+    },
+    {
+     "id": "_srv_37",
+     "x": 1081,
+     "y": 942,
+     "width": 391,
+     "height": 374,
+     "markX": 192,
+     "markY": 155,
+     "nodes": [
+      26367
+     ]
+    },
+    {
+     "id": "_srv_38",
+     "x": 1318,
+     "y": 869,
+     "width": 620,
+     "height": 412,
+     "markX": 163,
+     "markY": 59,
+     "nodes": [
+      26320
+     ]
+    },
+    {
+     "id": "_srv_39",
+     "x": 2009,
+     "y": 988,
+     "width": 170,
+     "height": 254,
+     "markX": 88,
+     "markY": 63,
+     "nodes": [
+      26336
+     ]
+    },
+    {
+     "id": "_srv_4",
+     "x": -32,
+     "y": 168,
+     "width": 240,
+     "height": 194,
+     "markX": 119,
+     "markY": 52,
+     "nodes": [
+      26556
+     ]
+    },
+    {
+     "id": "_srv_40",
+     "x": 2157,
+     "y": 915,
+     "width": 169,
+     "height": 236,
+     "markX": 92,
+     "markY": 49,
+     "nodes": [
+      26340
+     ]
+    },
+    {
+     "id": "_srv_41",
+     "x": 2194,
+     "y": 958,
+     "width": 268,
+     "height": 288,
+     "markX": 135,
+     "markY": 49,
+     "nodes": [
+      26329
+     ]
+    },
+    {
+     "id": "_srv_42",
+     "x": 2077,
+     "y": 1117,
+     "width": 182,
+     "height": 292,
+     "markX": 95,
+     "markY": 79,
+     "nodes": [
+      26261,
+      26324
+     ]
+    },
+    {
+     "id": "_srv_43",
+     "x": 2298,
+     "y": 1122,
+     "width": 186,
+     "height": 192,
+     "markX": 117,
+     "markY": 53,
+     "nodes": [
+      26327
+     ]
+    },
+    {
+     "id": "_srv_44",
+     "x": -1,
+     "y": 1028,
+     "width": 332,
+     "height": 318,
+     "markX": 178,
+     "markY": 95,
+     "nodes": [
+      26060
+     ]
+    },
+    {
+     "id": "_srv_45",
+     "x": 329,
+     "y": 1174,
+     "width": 292,
+     "height": 238,
+     "markX": 138,
+     "markY": 66,
+     "nodes": [
+      26065
+     ]
+    },
+    {
+     "id": "_srv_46",
+     "x": 684,
+     "y": 1236,
+     "width": 256,
+     "height": 274,
+     "markX": 136,
+     "markY": 96,
+     "nodes": [
+      26073
+     ]
+    },
+    {
+     "id": "_srv_47",
+     "x": 853,
+     "y": 1231,
+     "width": 452,
+     "height": 344,
+     "markX": 222,
+     "markY": 143,
+     "nodes": [
+      26369,
+      26377
+     ]
+    },
+    {
+     "id": "_srv_48",
+     "x": 1326,
+     "y": 1097,
+     "width": 296,
+     "height": 310,
+     "markX": 150,
+     "markY": 137,
+     "nodes": [
+      26353
+     ]
+    },
+    {
+     "id": "_srv_49",
+     "x": 1559,
+     "y": 1231,
+     "width": 246,
+     "height": 222,
+     "markX": 135,
+     "markY": 60,
+     "nodes": [
+      26355
+     ]
+    },
+    {
+     "id": "_srv_5",
+     "x": 165,
+     "y": 149,
+     "width": 228,
+     "height": 276,
+     "markX": 114,
+     "markY": 68,
+     "nodes": [
+      25983,
+      26549
+     ]
+    },
+    {
+     "id": "_srv_50",
+     "x": 1717,
+     "y": 1109,
+     "width": 378,
+     "height": 384,
+     "markX": 155,
+     "markY": 187,
+     "nodes": [
+      26249,
+      26282,
+      27218
+     ]
+    },
+    {
+     "id": "_srv_51",
+     "x": -10,
+     "y": 1494,
+     "width": 291,
+     "height": 372,
+     "markX": 104,
+     "markY": 153,
+     "nodes": [
+      26094
+     ]
+    },
+    {
+     "id": "_srv_52",
+     "x": 193,
+     "y": 1348,
+     "width": 319,
+     "height": 306,
+     "markX": 154,
+     "markY": 125,
+     "nodes": [
+      26086,
+      26096
+     ]
+    },
+    {
+     "id": "_srv_53",
+     "x": 505,
+     "y": 1483,
+     "width": 242,
+     "height": 202,
+     "markX": 114,
+     "markY": 57,
+     "nodes": [
+      26123,
+      26125
+     ]
+    },
+    {
+     "id": "_srv_54",
+     "x": 653,
+     "y": 1391,
+     "width": 533,
+     "height": 390,
+     "markX": 234,
+     "markY": 194,
+     "nodes": [
+      26127,
+      26131,
+      26150
+     ]
+    },
+    {
+     "id": "_srv_55",
+     "x": 1014,
+     "y": 1507,
+     "width": 340,
+     "height": 328,
+     "markX": 171,
+     "markY": 123,
+     "nodes": [
+      26159
+     ]
+    },
+    {
+     "id": "_srv_56",
+     "x": 1104,
+     "y": 1222,
+     "width": 519,
+     "height": 579,
+     "markX": 234,
+     "markY": 290,
+     "nodes": [
+      26175,
+      26363
+     ]
+    },
+    {
+     "id": "_srv_57",
+     "x": 1578,
+     "y": 1414,
+     "width": 450,
+     "height": 414,
+     "markX": 229,
+     "markY": 165,
+     "nodes": [
+      26205,
+      26215,
+      26245,
+      26251
+     ]
+    },
+    {
+     "id": "_srv_58",
+     "x": 1890,
+     "y": 1374,
+     "width": 246,
+     "height": 278,
+     "markX": 139,
+     "markY": 79,
+     "nodes": [
+      26257
+     ]
+    },
+    {
+     "id": "_srv_59",
+     "x": 2130,
+     "y": 1383,
+     "width": 354,
+     "height": 310,
+     "markX": 174,
+     "markY": 110,
+     "nodes": [
+      26269
+     ]
+    },
+    {
+     "id": "_srv_6",
+     "x": 468,
+     "y": -6,
+     "width": 232,
+     "height": 193,
+     "markX": 110,
+     "markY": 48,
+     "nodes": [
+      26023
+     ]
+    },
+    {
+     "id": "_srv_60",
+     "x": 115,
+     "y": 1730,
+     "width": 202,
+     "height": 266,
+     "markX": 104,
+     "markY": 48,
+     "nodes": [
+      26092,
+      26104
+     ]
+    },
+    {
+     "id": "_srv_61",
+     "x": -2,
+     "y": 1859,
+     "width": 174,
+     "height": 172,
+     "markX": 74,
+     "markY": 41,
+     "nodes": [
+      26111
+     ]
+    },
+    {
+     "id": "_srv_62",
+     "x": 22,
+     "y": 1949,
+     "width": 122,
+     "height": 210,
+     "markX": 67,
+     "markY": 33,
+     "nodes": [
+      26109
+     ]
+    },
+    {
+     "id": "_srv_63",
+     "x": 101,
+     "y": 2019,
+     "width": 172,
+     "height": 143,
+     "markX": 91,
+     "markY": 16,
+     "nodes": [
+      26116
+     ]
+    },
+    {
+     "id": "_srv_64",
+     "x": 207,
+     "y": 1837,
+     "width": 193,
+     "height": 278,
+     "markX": 93,
+     "markY": 54,
+     "nodes": [
+      26105
+     ]
+    },
+    {
+     "id": "_srv_65",
+     "x": 236,
+     "y": 1706,
+     "width": 644,
+     "height": 308,
+     "markX": 449,
+     "markY": 46,
+     "nodes": [
+      27204
+     ]
+    },
+    {
+     "id": "_srv_66",
+     "x": 819,
+     "y": 1688,
+     "width": 358,
+     "height": 374,
+     "markX": 169,
+     "markY": 148,
+     "nodes": [
+      26156
+     ]
+    },
+    {
+     "id": "_srv_67",
+     "x": 1161,
+     "y": 1819,
+     "width": 208,
+     "height": 270,
+     "markX": 103,
+     "markY": 50,
+     "nodes": [
+      26192
+     ]
+    },
+    {
+     "id": "_srv_68",
+     "x": 1246,
+     "y": 1736,
+     "width": 202,
+     "height": 240,
+     "markX": 107,
+     "markY": 38,
+     "nodes": [
+      26173,
+      26183
+     ]
+    },
+    {
+     "id": "_srv_69",
+     "x": 1342,
+     "y": 1837,
+     "width": 200,
+     "height": 232,
+     "markX": 100,
+     "markY": 57,
+     "nodes": [
+      26186
+     ]
+    },
+    {
+     "id": "_srv_7",
+     "x": 843,
+     "y": -2,
+     "width": 136,
+     "height": 190,
+     "markX": 69,
+     "markY": 36,
+     "nodes": [
+      26027
+     ]
+    },
+    {
+     "id": "_srv_70",
+     "x": 1339,
+     "y": 2040,
+     "width": 210,
+     "height": 117,
+     "markX": 104,
+     "markY": 17,
+     "nodes": [
+      26194
+     ]
+    },
+    {
+     "id": "_srv_71",
+     "x": 1488,
+     "y": 1959,
+     "width": 184,
+     "height": 136,
+     "markX": 99,
+     "markY": 23,
+     "nodes": [
+      26190
+     ]
+    },
+    {
+     "id": "_srv_72",
+     "x": 1342,
+     "y": 1611,
+     "width": 556,
+     "height": 452,
+     "markX": 235,
+     "markY": 99,
+     "nodes": [
+      26179
+     ]
+    },
+    {
+     "id": "_srv_73",
+     "x": 1698,
+     "y": 1898,
+     "width": 296,
+     "height": 238,
+     "markX": 153,
+     "markY": 75,
+     "nodes": [
+      27133
+     ]
+    },
+    {
+     "id": "_srv_74",
+     "x": 1835,
+     "y": 1554,
+     "width": 452,
+     "height": 468,
+     "markX": 249,
+     "markY": 187,
+     "nodes": [
+      26219,
+      26227
+     ]
+    },
+    {
+     "id": "_srv_75",
+     "x": 2178,
+     "y": 1738,
+     "width": 310,
+     "height": 206,
+     "markX": 178,
+     "markY": 56,
+     "nodes": [
+      26231
+     ]
+    },
+    {
+     "id": "_srv_76",
+     "x": 2107,
+     "y": 1952,
+     "width": 342,
+     "height": 208,
+     "markX": 181,
+     "markY": 59,
+     "nodes": [
+      26236
+     ]
+    },
+    {
+     "id": "_srv_77",
+     "x": 621,
+     "y": 1872,
+     "width": 438,
+     "height": 259,
+     "markX": 193,
+     "markY": 127,
+     "nodes": [
+      26137
+     ]
+    },
+    {
+     "id": "_srv_78",
+     "x": 519,
+     "y": 1013,
+     "width": 399,
+     "height": 372,
+     "markX": 193,
+     "markY": 179,
+     "nodes": [
+      26069,
+      26381,
+      26387
+     ]
+    },
+    {
+     "id": "_srv_79",
+     "x": 628,
+     "y": 0,
+     "width": 271,
+     "height": 315,
+     "markX": 122,
+     "markY": 52,
+     "nodes": [
+      26015
+     ]
+    },
+    {
+     "id": "_srv_8",
+     "x": 906,
+     "y": 0,
+     "width": 406,
+     "height": 267,
+     "markX": 180,
+     "markY": 93,
+     "nodes": [
+      27334,
+      27337
+     ]
+    },
+    {
+     "id": "_srv_80",
+     "x": 1348,
+     "y": 1328,
+     "width": 357,
+     "height": 342,
+     "markX": 169,
+     "markY": 168,
+     "nodes": [
+      26203,
+      26351
+     ]
+    },
+    {
+     "id": "_srv_81",
+     "x": 1,
+     "y": 1190,
+     "width": 450,
+     "height": 408,
+     "markX": 154,
+     "markY": 197,
+     "nodes": [
+      26100
+     ]
+    },
+    {
+     "id": "_srv_82",
+     "x": 378,
+     "y": 1861,
+     "width": 480,
+     "height": 303,
+     "markX": 227,
+     "markY": 181,
+     "nodes": [
+      26141
+     ]
+    },
+    {
+     "id": "_srv_9",
+     "x": 1092,
+     "y": 27,
+     "width": 386,
+     "height": 240,
+     "markX": 146,
+     "markY": 41,
+     "nodes": [
+      26450
+     ]
+    }
+   ],
+   "map_size": [
+    2488,
+    2164
+   ]
+  },
+  "farental": {
+   "id": 6,
+   "name": "Фаренталь",
+   "regions": [
+    "Земли замка Тур-де-Кастельон",
+    "Земли замка Сарбран",
+    "Земли замка Вижон",
+    "Земли замка Кореаль",
+    "Деклановы земли",
+    "Башня Тур-де-Кастельон",
+    "Донжон де Сарбран",
+    "Шато-Вижон",
+    "Цитадель Кореаль"
+   ],
+   "castles": [
+    {
+     "name": "Башня Тур-де-Кастельон",
+     "service_ids": [
+      1059
+     ],
+     "description": "Эта башня - сердце замка Кастельон. Ее построил барон Грофель во времена Третьей Смуты, чтобы защитить свои владения.",
+     "territory": [
+      "Земли замка Тур-де-Кастельон",
+      "Башня Тур-де-Кастельон"
+     ],
+     "points": [
+      "_srv_1"
+     ],
+     "service_types": {
+      "1059": "CASTLE_FORT"
+     }
+    },
+    {
+     "name": "Донжон де Сарбран",
+     "service_ids": [
+      1061
+     ],
+     "description": "Давным-давно в цитадели замка Сарбран хранилась Чаша Славы. С тех пор замок посещают все рыцари, мечтающие ее найти.",
+     "territory": [
+      "Земли замка Сарбран",
+      "Донжон де Сарбран"
+     ],
+     "points": [
+      "_srv_14"
+     ],
+     "service_types": {
+      "1061": "CASTLE_FORT"
+     }
+    },
+    {
+     "name": "Шато-Вижон",
+     "service_ids": [
+      1063
+     ],
+     "description": "Главная башня замка Вижон была построена принцем Дантером, когда-то претендовавшим на конхобарский престол.",
+     "territory": [
+      "Земли замка Вижон",
+      "Шато-Вижон"
+     ],
+     "points": [
+      "_srv_52"
+     ],
+     "service_types": {
+      "1063": "CASTLE_FORT"
+     }
+    },
+    {
+     "name": "Цитадель Кореаль",
+     "service_ids": [
+      1065
+     ],
+     "description": "Здесь смертельно раненый принц Зорио узнал, что его войска победили принца Дантера, и тут же испустил дух.",
+     "territory": [
+      "Земли замка Кореаль",
+      "Цитадель Кореаль"
+     ],
+     "points": [
+      "_srv_77"
+     ],
+     "service_types": {
+      "1065": "CASTLE_FORT"
+     }
+    }
+   ],
+   "gates": [
+    {
+     "name": "Ренатовы ворота",
+     "service_ids": [
+      1119
+     ],
+     "description": "Когда-то барон Грофель сбросил с этих ворот свою неверную жену Ренату.",
+     "points": [
+      "_srv_4"
+     ],
+     "service_types": {
+      "1119": "CASTLE_GATE"
+     }
+    },
+    {
+     "name": "Ворота Пилигримов",
+     "service_ids": [
+      1123
+     ],
+     "description": "Единственный вход в замок Сарбран защищен могучими воротами, украшенными гербом ордена Рыцарей Чаши.",
+     "points": [
+      "_srv_16"
+     ],
+     "service_types": {
+      "1123": "CASTLE_GATE"
+     }
+    },
+    {
+     "name": "Ворота Трубадура",
+     "service_ids": [
+      1126
+     ],
+     "description": "Жак Трубадур вдохновлял здесь песнями солдат принца Дантера, пока последний из них не пал от рук осаждавших.",
+     "points": [
+      "_srv_54"
+     ],
+     "service_types": {
+      "1126": "CASTLE_GATE"
+     }
+    },
+    {
+     "name": "Ворота Трех Таранов",
+     "service_ids": [
+      1129
+     ],
+     "description": "Во время Трехдневного штурма солдаты Дантера сломали об эти ворота три тарана.",
+     "points": [
+      "_srv_75"
+     ],
+     "service_types": {
+      "1129": "CASTLE_GATE"
+     }
+    }
+   ],
+   "castle_buildings": [],
+   "resource_points": [
+    {
+     "name": "Прииск Лакурт",
+     "service_ids": [
+      1143
+     ],
+     "description": "Газ, вырывающийся из-под земли, время от времени убивает шахтеров. Но драгоценный металл стоит любых жертв.",
+     "type": 5,
+     "kind": "Золотая шахта",
+     "resource": "Золото",
+     "points": [
+      "_srv_6"
+     ],
+     "service_types": {
+      "1143": "RESOURCE_POINT"
+     }
+    },
+    {
+     "name": "Каменоломни Твирро",
+     "service_ids": [
+      1147
+     ],
+     "description": "Замок Кастельон построен из здешнего камня.",
+     "type": 2,
+     "kind": "Каменоломня",
+     "resource": "Камень",
+     "points": [
+      "_srv_8"
+     ],
+     "service_types": {
+      "1147": "RESOURCE_POINT"
+     }
+    },
+    {
+     "name": "Рудник Шогруа",
+     "service_ids": [
+      1150
+     ],
+     "description": "Это один из старейших рудников округи. Его заложили еще туаты во время войны за Перо Феникса.",
+     "type": 4,
+     "kind": "Шахта",
+     "resource": "Металл",
+     "points": [
+      "_srv_7"
+     ],
+     "service_types": {
+      "1150": "RESOURCE_POINT"
+     }
+    },
+    {
+     "name": "Каменоломни Гетру",
+     "service_ids": [
+      1153
+     ],
+     "description": "Камень из Гетру трудно обрабатывать, но стены из него получаются необыкновенно прочными.",
+     "type": 2,
+     "kind": "Каменоломня",
+     "resource": "Камень",
+     "points": [
+      "_srv_9"
+     ],
+     "service_types": {
+      "1153": "RESOURCE_POINT"
+     }
+    },
+    {
+     "name": "Волшебный источник Аргиэль",
+     "service_ids": [
+      1155
+     ],
+     "description": "В этих местах скрыта могучая светлая сила. Туатские друиды использовали ее, чтобы управлять погодой.",
+     "type": 6,
+     "kind": "Источник светлой энергии",
+     "resource": "Светлая энергия",
+     "points": [
+      "_srv_18"
+     ],
+     "service_types": {
+      "1155": "RESOURCE_POINT"
+     }
+    },
+    {
+     "name": "Лесопилка Нагюр",
+     "service_ids": [
+      1159
+     ],
+     "description": "В мире, где спрос на гробы растет с каждым днем, хозяева лесопилки могут не опасаться за свои доходы.",
+     "type": 3,
+     "kind": "Лесопилка",
+     "resource": "Древесина",
+     "points": [
+      "_srv_20"
+     ],
+     "service_types": {
+      "1159": "RESOURCE_POINT"
+     }
+    },
+    {
+     "name": "Ферма Трезо",
+     "service_ids": [
+      1162
+     ],
+     "description": "Годы упорного труда не пропали даром. Ферма Трезо процветает на зависть соседям.",
+     "type": 1,
+     "kind": "Ферма",
+     "resource": "Еда",
+     "points": [
+      "_srv_30"
+     ],
+     "service_types": {
+      "1162": "RESOURCE_POINT"
+     }
+    },
+    {
+     "name": "Лесопилка Тарро",
+     "service_ids": [
+      1165
+     ],
+     "description": "Дровосек Тарро был убит туатами за то, что срубил священный дуб. Туаты ушли, и теперь валить лес можно сколько вздумается.",
+     "type": 3,
+     "kind": "Лесопилка",
+     "resource": "Древесина",
+     "points": [
+      "_srv_27"
+     ],
+     "service_types": {
+      "1165": "RESOURCE_POINT"
+     }
+    },
+    {
+     "name": "Темный источник Бифуаль",
+     "service_ids": [
+      1169
+     ],
+     "description": "В этом месте из-под земли рвется чистое, концентрированное зло. Люди умирают или сходят с ума, едва приблизившись к источнику Бифуаль.",
+     "type": 7,
+     "kind": "Источник темной энергии",
+     "resource": "Темная энергия",
+     "points": [
+      "_srv_39"
+     ],
+     "service_types": {
+      "1169": "RESOURCE_POINT"
+     }
+    },
+    {
+     "name": "Каменоломни Шаго",
+     "service_ids": [
+      1172
+     ],
+     "description": "Каторжники, сосланные в эти каменоломни, умирают подозрительно быстро.",
+     "type": 2,
+     "kind": "Каменоломня",
+     "resource": "Камень",
+     "points": [
+      "_srv_11"
+     ],
+     "service_types": {
+      "1172": "RESOURCE_POINT"
+     }
+    },
+    {
+     "name": "Рудник Орредо",
+     "service_ids": [
+      1174
+     ],
+     "description": "Мастер Орредо считал, что настоящий рыцарский меч нужно ковать из здешней руды.",
+     "type": 4,
+     "kind": "Шахта",
+     "resource": "Металл",
+     "points": [
+      "_srv_10"
+     ],
+     "service_types": {
+      "1174": "RESOURCE_POINT"
+     }
+    },
+    {
+     "name": "Священный источник Сантомар",
+     "service_ids": [
+      1178
+     ],
+     "description": "Вода из этого источника способна исцелять тяжело больных, а чародеи, испившие ее, начинают прозревать суть вещей.",
+     "type": 6,
+     "kind": "Источник светлой энергии",
+     "resource": "Светлая энергия",
+     "points": [
+      "_srv_81"
+     ],
+     "service_types": {
+      "1178": "RESOURCE_POINT"
+     }
+    },
+    {
+     "name": "Каменоломни Бюланш",
+     "service_ids": [
+      1183
+     ],
+     "description": "Вожди последнего восстания против Форбанта Плешивого умерли в цепях на этих каменоломнях.",
+     "type": 2,
+     "kind": "Каменоломня",
+     "resource": "Камень",
+     "points": [
+      "_srv_23"
+     ],
+     "service_types": {
+      "1183": "RESOURCE_POINT"
+     }
+    },
+    {
+     "name": "Шахта Бюзье",
+     "service_ids": [
+      1186
+     ],
+     "description": "Местные старатели говорят: земля отдает серебро и золото, но взамен требует крови. И они твердо знают, что так оно и есть.",
+     "type": 4,
+     "kind": "Шахта",
+     "resource": "Металл",
+     "points": [
+      "_srv_24"
+     ],
+     "service_types": {
+      "1186": "RESOURCE_POINT"
+     }
+    },
+    {
+     "name": "Колодец силы Ньярош",
+     "service_ids": [
+      1189
+     ],
+     "description": "В окрестностях \"Черного Колодца\" вино превращается в уксус, а в свежем мясе заводятся черви. Дыхание зла чувствуется здесь повсюду.",
+     "type": 7,
+     "kind": "Источник темной энергии",
+     "resource": "Темная энергия",
+     "points": [
+      "_srv_29"
+     ],
+     "service_types": {
+      "1189": "RESOURCE_POINT"
+     }
+    },
+    {
+     "name": "Лесопилка Важан",
+     "service_ids": [
+      1191
+     ],
+     "description": "Сначала здесь был монастырь культа Восьми Героев, но, со временем, монахи стали торговать древесиной и обратились в обычных лесорубов.",
+     "type": 3,
+     "kind": "Лесопилка",
+     "resource": "Древесина",
+     "points": [
+      "_srv_33"
+     ],
+     "service_types": {
+      "1191": "RESOURCE_POINT"
+     }
+    },
+    {
+     "name": "Ферма Орлен",
+     "service_ids": [
+      1195
+     ],
+     "description": "По преданию, друид Угиндурикс завещал развеять здесь его прах. С тех пор эти земли славятся плодородием.",
+     "type": 1,
+     "kind": "Ферма",
+     "resource": "Еда",
+     "points": [
+      "_srv_35"
+     ],
+     "service_types": {
+      "1195": "RESOURCE_POINT"
+     }
+    },
+    {
+     "name": "Ферма Шатле",
+     "service_ids": [
+      1198
+     ],
+     "description": "На эту процветающую ферму претендуют сразу несколько знатных семейств, храм Восьми Героев и даже Гильдия булочников.",
+     "type": 1,
+     "kind": "Ферма",
+     "resource": "Еда",
+     "points": [
+      "_srv_36"
+     ],
+     "service_types": {
+      "1198": "RESOURCE_POINT"
+     }
+    },
+    {
+     "name": "Ферма Тубанар",
+     "service_ids": [
+      1201
+     ],
+     "description": "Хозяева этой фермы первыми применили трехпольную систему с искусственным орошением и добились успеха.",
+     "type": 1,
+     "kind": "Ферма",
+     "resource": "Еда",
+     "points": [
+      "_srv_51"
+     ],
+     "service_types": {
+      "1201": "RESOURCE_POINT"
+     }
+    },
+    {
+     "name": "Поля Логруа",
+     "service_ids": [
+      1204
+     ],
+     "description": "Говорят, местные крестьяне за хорошие урожаи продали душу темному богу Дагору. Божество оказалось весьма щедрым.",
+     "type": 1,
+     "kind": "Ферма",
+     "resource": "Еда",
+     "points": [
+      "_srv_50"
+     ],
+     "service_types": {
+      "1204": "RESOURCE_POINT"
+     }
+    },
+    {
+     "name": "Лесопилка Антрен",
+     "service_ids": [
+      1207
+     ],
+     "description": "В прежние времена эта лесопилка принадлежала самому королю Гарольду.",
+     "type": 3,
+     "kind": "Лесопилка",
+     "resource": "Древесина",
+     "points": [
+      "_srv_64"
+     ],
+     "service_types": {
+      "1207": "RESOURCE_POINT"
+     }
+    },
+    {
+     "name": "Каменоломни Монфоссе",
+     "service_ids": [
+      1210
+     ],
+     "description": "По ночам здесь слышат странный стук. Говорят, это мертвые рабочие поднимаются из могил, чтобы продолжить свой труд.",
+     "type": 2,
+     "kind": "Каменоломня",
+     "resource": "Камень",
+     "points": [
+      "_srv_73"
+     ],
+     "service_types": {
+      "1210": "RESOURCE_POINT"
+     }
+    },
+    {
+     "name": "Каменоломни Диссо",
+     "service_ids": [
+      1213
+     ],
+     "description": "Туаты не использовали здешних камней, потому что считали их проклятыми. У современных каменотесов иное мнение.",
+     "type": 2,
+     "kind": "Каменоломня",
+     "resource": "Камень",
+     "points": [
+      "_srv_72"
+     ],
+     "service_types": {
+      "1213": "RESOURCE_POINT"
+     }
+    },
+    {
+     "name": "Рудники Сорлен",
+     "service_ids": [
+      1216
+     ],
+     "description": "Преступники, которых приговорили к работам на этих рудниках, умоляют, чтобы их просто казнили.",
+     "type": 4,
+     "kind": "Шахта",
+     "resource": "Металл",
+     "points": [
+      "_srv_71"
+     ],
+     "service_types": {
+      "1216": "RESOURCE_POINT"
+     }
+    },
+    {
+     "name": "Чудесный родник Кридаган",
+     "service_ids": [
+      1219
+     ],
+     "description": "Здешние воды несут в себе силу Света. Добрый маг найдет здесь источник безграничного могущества.",
+     "type": 6,
+     "kind": "Источник светлой энергии",
+     "resource": "Светлая энергия",
+     "points": [
+      "_srv_63"
+     ],
+     "service_types": {
+      "1219": "RESOURCE_POINT"
+     }
+    },
+    {
+     "name": "Ферма Ватье",
+     "service_ids": [
+      1222
+     ],
+     "description": "Эта земля удобрена  кровью храбрецов, павших в годы войны Тюльпанов, и оттого особенно плодородна.",
+     "type": 1,
+     "kind": "Ферма",
+     "resource": "Еда",
+     "points": [
+      "_srv_38"
+     ],
+     "service_types": {
+      "1222": "RESOURCE_POINT"
+     }
+    },
+    {
+     "name": "Лесопилка Чиготти",
+     "service_ids": [
+      1225
+     ],
+     "description": "Эту лесопилку основал купец Гвидо Чиготти, бежавший из Верона от кредиторов.",
+     "type": 3,
+     "kind": "Лесопилка",
+     "resource": "Древесина",
+     "points": [
+      "_srv_59"
+     ],
+     "service_types": {
+      "1225": "RESOURCE_POINT"
+     }
+    },
+    {
+     "name": "Лесопилка Фиобор",
+     "service_ids": [
+      1228
+     ],
+     "description": "Здесь пилят деревья с помощью новейшей механической пилы, которую приводит в движение демон, посаженный на цепь",
+     "type": 3,
+     "kind": "Лесопилка",
+     "resource": "Древесина",
+     "points": [
+      "_srv_57"
+     ],
+     "service_types": {
+      "1228": "RESOURCE_POINT"
+     }
+    },
+    {
+     "name": "Шахта Буффо",
+     "service_ids": [
+      1231
+     ],
+     "description": "Эту шахту проектировали лучшие гномьи инженеры, а руда здесь просто превосходная.",
+     "type": 4,
+     "kind": "Шахта",
+     "resource": "Металл",
+     "points": [
+      "_srv_68"
+     ],
+     "service_types": {
+      "1231": "RESOURCE_POINT"
+     }
+    },
+    {
+     "name": "Рудник Набот",
+     "service_ids": [
+      1235
+     ],
+     "description": "Шахтеры верят в легенду о Черном Рудокопе, что роет свой тоннель из самой преисподней. Говорят, он вырвется в мир людей через шахту Набот.",
+     "type": 4,
+     "kind": "Шахта",
+     "resource": "Металл",
+     "points": [
+      "_srv_67"
+     ],
+     "service_types": {
+      "1235": "RESOURCE_POINT"
+     }
+    },
+    {
+     "name": "Каменоломни Маунахар",
+     "service_ids": [
+      1238
+     ],
+     "description": "Здесь добывали камень еще в эпоху туатских королей. Здешний гранит просто великолепен.",
+     "type": 2,
+     "kind": "Каменоломня",
+     "resource": "Камень",
+     "points": [
+      "_srv_66"
+     ],
+     "service_types": {
+      "1238": "RESOURCE_POINT"
+     }
+    }
+   ],
+   "workshops": 4,
+   "npc_and_shops": [
+    {
+     "name": "Майор Хортес",
+     "service_ids": [
+      1356
+     ],
+     "description": "Хозяин трактира \"У башни\" всегда рад гостям, если они сами платят за еду и ночлег.",
+     "points": [
+      "_srv_55"
+     ],
+     "service_types": {
+      "1356": "NPC"
+     }
+    },
+    {
+     "name": "Лавка Карандуса",
+     "service_ids": [
+      1357
+     ],
+     "description": "Маг Карандус утверждает, что мир  имеет форму шара и вращается. Наверное, помешался на старости лет.",
+     "points": [
+      "_srv_56"
+     ],
+     "service_types": {
+      "1357": "SHOP"
+     }
+    },
+    {
+     "name": "Кривой Луи",
+     "service_ids": [
+      1358
+     ],
+     "description": "В харчевне \"Кабаний клык\" замковая стража спускает свое жалование на пиво, женщин и игру в кости.",
+     "points": [
+      "_srv_5"
+     ],
+     "service_types": {
+      "1358": "NPC"
+     }
+    },
+    {
+     "name": "Лаборатория Титля",
+     "service_ids": [
+      1360
+     ],
+     "description": "Семья Титлей обитает в Кастельоне не одно столетие. Секреты магических искусств Титли передают от отца к сыну.",
+     "points": [
+      "_srv_3"
+     ],
+     "service_types": {
+      "1360": "SHOP"
+     }
+    },
+    {
+     "name": "Белокурая Козетта",
+     "service_ids": [
+      1361
+     ],
+     "description": "Считается, что все уважающие себя странствующие рыцари должны пропустить рюмочку в этом почтенном заведении - постоялом дворе Сарбранор.",
+     "points": [
+      "_srv_15"
+     ],
+     "service_types": {
+      "1361": "NPC"
+     }
+    },
+    {
+     "name": "Салон госпожи Вертиго",
+     "service_ids": [
+      1362
+     ],
+     "description": "Искатели Чаши Славы рано или поздно просят госпожу Вертиго погадать им на кофейной гуще.",
+     "points": [
+      "_srv_12"
+     ],
+     "service_types": {
+      "1362": "SHOP"
+     }
+    },
+    {
+     "name": "Тетушка Хлоя",
+     "service_ids": [
+      1363
+     ],
+     "description": "Таверна \"Только попробуй\". Еще ни один посетитель не посмел сказать, что тетушка Хлоя плохо готовит. Попробовал бы только!",
+     "points": [
+      "_srv_76"
+     ],
+     "service_types": {
+      "1363": "NPC"
+     }
+    },
+    {
+     "name": "Башня Ниссы Волшебницы",
+     "service_ids": [
+      1364
+     ],
+     "description": "Нисса всегда мечтала иметь собственную колдовскую башню, поэтому ее скромный флигель носит столь гордое название.",
+     "points": [
+      "_srv_78"
+     ],
+     "service_types": {
+      "1364": "SHOP"
+     }
+    },
+    {
+     "name": "Торговая лавка",
+     "service_ids": [
+      1367
+     ],
+     "description": "Авильские крестьяне страдают от малоземелья, и лишь торговля награбленным помогает им выжить.",
+     "points": [
+      "_srv_80"
+     ],
+     "service_types": {
+      "1367": "SHOP"
+     }
+    },
+    {
+     "name": "Телия Лансо",
+     "service_ids": [
+      1368
+     ],
+     "description": "Из трубы вьется сизый дымок. Наверное, здесь будут рады гостям.",
+     "points": [
+      "_srv_79"
+     ],
+     "service_types": {
+      "1368": "NPC"
+     }
+    }
+   ],
+   "locations": [
+    {
+     "name": "Лес Обран",
+     "service_ids": [
+      1371
+     ],
+     "description": "Под сенью этих вековых деревьев долго укрывались последователи страшного Культа Костей.",
+     "points": [
+      "_srv_26"
+     ],
+     "service_types": {
+      "1371": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Бивранский лес",
+     "service_ids": [
+      1373
+     ],
+     "description": "Высокие деревья окутаны туманом, что не исчезает даже в солнечные дни.",
+     "points": [
+      "_srv_31"
+     ],
+     "service_types": {
+      "1373": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Лес виконта де Соро",
+     "service_ids": [
+      1375
+     ],
+     "description": "Здесь виконт де Соро в одиночку набросился на банду разбойников. Душегубы были столь восхищены такой отвагой, что убили его, не заставив мучиться.",
+     "points": [
+      "_srv_32"
+     ],
+     "service_types": {
+      "1375": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Мурранова чаща",
+     "service_ids": [
+      1376
+     ],
+     "description": "Колдун Муррано был до того зол, что его лес покинули и звери, и птицы. Говорят, лишившись дичи, злодей умер от голода.",
+     "points": [
+      "_srv_34"
+     ],
+     "service_types": {
+      "1376": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Лес старца Дуно",
+     "service_ids": [
+      1377
+     ],
+     "description": "Разбойник Дуно много лет выдавал себя за прорицателя и безнаказанно убивал и грабил тех, кто приходил к нему за пророчеством.",
+     "points": [
+      "_srv_37"
+     ],
+     "service_types": {
+      "1377": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Редколесье Лург",
+     "service_ids": [
+      1378
+     ],
+     "description": "Где-то здесь находится могила Мирлона Учтивого - славнейшего из Рыцарей Чаши.",
+     "points": [
+      "_srv_40"
+     ],
+     "service_types": {
+      "1378": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Урочище Фумуар",
+     "service_ids": [
+      1379
+     ],
+     "description": "Туатские мудрецы когда-то вычислили, что в этом лесу прольется много крови. И они не ошиблись.",
+     "points": [
+      "_srv_43"
+     ],
+     "service_types": {
+      "1379": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Туиново пустоземье",
+     "service_ids": [
+      1380
+     ],
+     "description": "Говорят, принц Туин просил здесь прощение у родной земли за то, что уводит туатский народ в изгнание.",
+     "points": [
+      "_srv_47"
+     ],
+     "service_types": {
+      "1380": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Тургонов пустырь",
+     "service_ids": [
+      1381
+     ],
+     "description": "Эту землю засыпали солью солдаты Форбанта, чтобы наказать бунтующих крестьян. Больше здесь ничего не растет.",
+     "points": [
+      "_srv_70"
+     ],
+     "service_types": {
+      "1381": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Аратский лес",
+     "service_ids": [
+      1382
+     ],
+     "description": "Бард Вийо потерял здесь свой чудесный голос. Говорят,  голос до сих пор прячется где-то среди деревьев, и тот, кто его найдет, станет лучшим певцом в мире.",
+     "points": [
+      "_srv_62"
+     ],
+     "service_types": {
+      "1382": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Бокруанская пуща",
+     "service_ids": [
+      1384
+     ],
+     "description": "Говорят, деревья этого леса никогда не умирают. А вот люди гибнут здесь довольно часто.",
+     "points": [
+      "_srv_61"
+     ],
+     "service_types": {
+      "1384": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Некидорский лес",
+     "service_ids": [
+      1385
+     ],
+     "description": "В тени некидорских дубов сторонники принца Зорио образовали лигу Алого Тюльпана и поклялись биться до конца.",
+     "points": [
+      "_srv_60"
+     ],
+     "service_types": {
+      "1385": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Лес Зорио",
+     "service_ids": [
+      1386
+     ],
+     "description": "Принц Зорио прятался здесь от убийц, подосланных его братом - принцем Дантером.",
+     "points": [
+      "_srv_58"
+     ],
+     "service_types": {
+      "1386": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Роща Боруа",
+     "service_ids": [
+      1387
+     ],
+     "description": "Эти деревья помнят времена, когда сыновья короля Форбанта - Дантер и Зорио - охотились вместе, а не пытались друг друга убить.",
+     "points": [
+      "_srv_65"
+     ],
+     "service_types": {
+      "1387": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Декланов лес",
+     "service_ids": [
+      1388
+     ],
+     "description": "В этом лесу сэр Деклан из ордена Рыцарей Чаши принес обет никогда больше не приносить обетов.",
+     "points": [
+      "_srv_69"
+     ],
+     "service_types": {
+      "1388": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Чащоба Малагон",
+     "service_ids": [
+      1389
+     ],
+     "description": "Легенда гласит: тот, кто станет хозяином этого леса, установит вечный мир. Поэтому война здесь не прекращается.",
+     "points": [
+      "_srv_49"
+     ],
+     "service_types": {
+      "1389": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Дантеров лес",
+     "service_ids": [
+      1390
+     ],
+     "description": "Здесь вождь Черных Тюльпанов - принц Дантер - заколол себя кинжалом после поражения при Ламюре.",
+     "points": [
+      "_srv_48"
+     ],
+     "service_types": {
+      "1390": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Гагонов заказник",
+     "service_ids": [
+      1391
+     ],
+     "description": "Дух королевского сокольничего Гагона до сих пор бережет этот лес от браконьеров.",
+     "points": [
+      "_srv_46"
+     ],
+     "service_types": {
+      "1391": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Урочище Вентагро",
+     "service_ids": [
+      1392
+     ],
+     "description": "Жестокий граф Жуан Фир обожал охотиться в этом лесу. Охотился он обычно на людей.",
+     "points": [
+      "_srv_45"
+     ],
+     "service_types": {
+      "1392": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Сиронский лес",
+     "service_ids": [
+      1393
+     ],
+     "description": "В этом лесу окруженные туатские охотники отказались сдаться и пали в неравном бою.",
+     "points": [
+      "_srv_44"
+     ],
+     "service_types": {
+      "1393": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Лес Угомот",
+     "service_ids": [
+      1394
+     ],
+     "description": "В древности туатские женщины ткали здесь волшебные одежды из паутины черных пауков.",
+     "points": [
+      "_srv_41"
+     ],
+     "service_types": {
+      "1394": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Пустошь Грумар",
+     "service_ids": [
+      1395
+     ],
+     "description": "Здесь крестьяне сожгли звездочета Аталуса, потому что боялись его телескопов.",
+     "points": [
+      "_srv_42"
+     ],
+     "service_types": {
+      "1395": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Пустошь Вербуа",
+     "service_ids": [
+      1397
+     ],
+     "description": "Иногда олени приходят на эту пустошь, прямо к крепостным стенам. Тогда хозяева Кастельона могут охотиться не выходя из замка.",
+     "points": [
+      "_srv_17"
+     ],
+     "service_types": {
+      "1397": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Редколесье Минезир",
+     "service_ids": [
+      1398
+     ],
+     "description": "Это место кажется мирным и приветливым каждому, кто не знает историй о Зиге Людоеде, что когда-то обитал в этих окрестностях.",
+     "points": [
+      "_srv_25"
+     ],
+     "service_types": {
+      "1398": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Роща Бракур",
+     "service_ids": [
+      1402
+     ],
+     "description": "В годы войны Алого и Черного Тюльпанов здесь лились реки крови.",
+     "points": [
+      "_srv_21"
+     ],
+     "service_types": {
+      "1402": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Заросли Велигон",
+     "service_ids": [
+      1403
+     ],
+     "description": "Этот лес считается заколдованным с тех пор, как отряд рыцарей Алого Тюльпана проблуждал здесь десять дней.",
+     "points": [
+      "_srv_28"
+     ],
+     "service_types": {
+      "1403": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Поле Ферлен",
+     "service_ids": [
+      1404
+     ],
+     "description": "На этом поле войска Форбанта Плешивого разгромили рыцарей Ордена Чаши.",
+     "points": [
+      "_srv_22"
+     ],
+     "service_types": {
+      "1404": "BATTLEFIELD"
+     }
+    },
+    {
+     "name": "Дорога в Конхобар",
+     "service_ids": [
+      1405
+     ],
+     "description": "Эта дорога ведет в столицу",
+     "portal": true,
+     "points": [
+      "_srv_82"
+     ],
+     "service_types": {
+      "1405": "PORTAL"
+     }
+    },
+    {
+     "name": "Тибальдова чащоба",
+     "service_ids": [
+      2330
+     ],
+     "description": "С тех пор, как Тибальт Отважный сразил Орона Сильного, этот лес стал любимым местом дуэлей конхобарских дворян.",
+     "points": [
+      "_srv_19"
+     ],
+     "service_types": {
+      "2330": "BATTLEFIELD"
+     }
+    }
+   ],
+   "map_points": [
+    {
+     "id": "_srv_1",
+     "x": 1,
+     "y": -1,
+     "width": 292,
+     "height": 360,
+     "markX": 146,
+     "markY": 5,
+     "nodes": [
+      25915
+     ]
+    },
+    {
+     "id": "_srv_10",
+     "x": 1220,
+     "y": -58,
+     "width": 314,
+     "height": 260,
+     "markX": 153,
+     "markY": 132,
+     "nodes": [
+      25378
+     ]
+    },
+    {
+     "id": "_srv_11",
+     "x": 1507,
+     "y": -7,
+     "width": 320,
+     "height": 322,
+     "markX": 151,
+     "markY": 159,
+     "nodes": [
+      25384,
+      25392
+     ]
+    },
+    {
+     "id": "_srv_12",
+     "x": 1876,
+     "y": 10,
+     "width": 210,
+     "height": 199,
+     "markX": 105,
+     "markY": 5,
+     "nodes": [
+      25893
+     ]
+    },
+    {
+     "id": "_srv_13",
+     "x": 2030,
+     "y": -4,
+     "width": 184,
+     "height": 177,
+     "markX": 92,
+     "markY": 37,
+     "nodes": [
+      25891
+     ]
+    },
+    {
+     "id": "_srv_14",
+     "x": 2153,
+     "y": 2,
+     "width": 244,
+     "height": 301,
+     "markX": 127,
+     "markY": 33,
+     "nodes": [
+      25878
+     ]
+    },
+    {
+     "id": "_srv_15",
+     "x": 2330,
+     "y": 227,
+     "width": 152,
+     "height": 186,
+     "markX": 77,
+     "markY": 23,
+     "nodes": [
+      25882
+     ]
+    },
+    {
+     "id": "_srv_16",
+     "x": 1959,
+     "y": 127,
+     "width": 192,
+     "height": 308,
+     "markX": 92,
+     "markY": 89,
+     "nodes": [
+      25404,
+      25871
+     ]
+    },
+    {
+     "id": "_srv_17",
+     "x": -25,
+     "y": 425,
+     "width": 566,
+     "height": 240,
+     "markX": 271,
+     "markY": 99,
+     "nodes": [
+      25332,
+      25480,
+      25484
+     ]
+    },
+    {
+     "id": "_srv_18",
+     "x": 574,
+     "y": 293,
+     "width": 286,
+     "height": 246,
+     "markX": 140,
+     "markY": 49,
+     "nodes": [
+      25342
+     ]
+    },
+    {
+     "id": "_srv_19",
+     "x": 624,
+     "y": 312,
+     "width": 460,
+     "height": 294,
+     "markX": 232,
+     "markY": 130,
+     "nodes": [
+      25466
+     ]
+    },
+    {
+     "id": "_srv_2",
+     "x": 230,
+     "y": -1,
+     "width": 175,
+     "height": 200,
+     "markX": 86,
+     "markY": 40,
+     "nodes": [
+      25928
+     ]
+    },
+    {
+     "id": "_srv_20",
+     "x": 887,
+     "y": 395,
+     "width": 352,
+     "height": 224,
+     "markX": 157,
+     "markY": 45,
+     "nodes": [
+      25901
+     ]
+    },
+    {
+     "id": "_srv_21",
+     "x": 1022,
+     "y": 508,
+     "width": 354,
+     "height": 166,
+     "markX": 163,
+     "markY": 56,
+     "nodes": [
+      25446
+     ]
+    },
+    {
+     "id": "_srv_22",
+     "x": 1277,
+     "y": 278,
+     "width": 394,
+     "height": 334,
+     "markX": 200,
+     "markY": 122,
+     "nodes": [
+      25418,
+      25436
+     ]
+    },
+    {
+     "id": "_srv_23",
+     "x": 1567,
+     "y": 260,
+     "width": 372,
+     "height": 322,
+     "markX": 172,
+     "markY": 110,
+     "nodes": [
+      25868
+     ]
+    },
+    {
+     "id": "_srv_24",
+     "x": 1984,
+     "y": 413,
+     "width": 135,
+     "height": 186,
+     "markX": 61,
+     "markY": 18,
+     "nodes": [
+      25865
+     ]
+    },
+    {
+     "id": "_srv_25",
+     "x": 153,
+     "y": 597,
+     "width": 352,
+     "height": 304,
+     "markX": 170,
+     "markY": 98,
+     "nodes": [
+      25486
+     ]
+    },
+    {
+     "id": "_srv_26",
+     "x": 418,
+     "y": 504,
+     "width": 528,
+     "height": 298,
+     "markX": 229,
+     "markY": 116,
+     "nodes": [
+      25460,
+      25494
+     ]
+    },
+    {
+     "id": "_srv_27",
+     "x": 670,
+     "y": 636,
+     "width": 306,
+     "height": 260,
+     "markX": 149,
+     "markY": 55,
+     "nodes": [
+      25496,
+      25500
+     ]
+    },
+    {
+     "id": "_srv_28",
+     "x": 1269,
+     "y": 509,
+     "width": 354,
+     "height": 272,
+     "markX": 167,
+     "markY": 106,
+     "nodes": [
+      25420,
+      25566
+     ]
+    },
+    {
+     "id": "_srv_29",
+     "x": 1652,
+     "y": 546,
+     "width": 290,
+     "height": 260,
+     "markX": 143,
+     "markY": 57,
+     "nodes": [
+      25416,
+      25829
+     ]
+    },
+    {
+     "id": "_srv_3",
+     "x": 338,
+     "y": 51,
+     "width": 230,
+     "height": 224,
+     "markX": 112,
+     "markY": 28,
+     "nodes": [
+      25921
+     ]
+    },
+    {
+     "id": "_srv_30",
+     "x": 42,
+     "y": 670,
+     "width": 509,
+     "height": 464,
+     "markX": 137,
+     "markY": 146,
+     "nodes": [
+      25518
+     ]
+    },
+    {
+     "id": "_srv_31",
+     "x": 371,
+     "y": 741,
+     "width": 420,
+     "height": 256,
+     "markX": 218,
+     "markY": 94,
+     "nodes": [
+      25492,
+      25506,
+      25514
+     ]
+    },
+    {
+     "id": "_srv_32",
+     "x": 835,
+     "y": 649,
+     "width": 542,
+     "height": 322,
+     "markX": 253,
+     "markY": 144,
+     "nodes": [
+      25454,
+      25571
+     ]
+    },
+    {
+     "id": "_srv_33",
+     "x": 1314,
+     "y": 668,
+     "width": 336,
+     "height": 232,
+     "markX": 168,
+     "markY": 5,
+     "nodes": [
+      25573
+     ]
+    },
+    {
+     "id": "_srv_34",
+     "x": 1464,
+     "y": 616,
+     "width": 386,
+     "height": 398,
+     "markX": 184,
+     "markY": 186,
+     "nodes": [
+      25577
+     ]
+    },
+    {
+     "id": "_srv_35",
+     "x": 1724,
+     "y": 620,
+     "width": 634,
+     "height": 452,
+     "markX": 276,
+     "markY": 191,
+     "nodes": [
+      25980
+     ]
+    },
+    {
+     "id": "_srv_36",
+     "x": 2022,
+     "y": 501,
+     "width": 464,
+     "height": 690,
+     "markX": 299,
+     "markY": 207,
+     "nodes": [
+      25805,
+      25819
+     ]
+    },
+    {
+     "id": "_srv_37",
+     "x": -20,
+     "y": 1116,
+     "width": 292,
+     "height": 234,
+     "markX": 113,
+     "markY": 89,
+     "nodes": [
+      29777
+     ]
+    },
+    {
+     "id": "_srv_38",
+     "x": 102,
+     "y": 1042,
+     "width": 720,
+     "height": 312,
+     "markX": 366,
+     "markY": 138,
+     "nodes": [
+      25530
+     ]
+    },
+    {
+     "id": "_srv_39",
+     "x": 634,
+     "y": 846,
+     "width": 348,
+     "height": 270,
+     "markX": 164,
+     "markY": 57,
+     "nodes": [
+      25520,
+      27171
+     ]
+    },
+    {
+     "id": "_srv_4",
+     "x": 300,
+     "y": 177,
+     "width": 194,
+     "height": 320,
+     "markX": 94,
+     "markY": 87,
+     "nodes": [
+      25331,
+      25912
+     ]
+    },
+    {
+     "id": "_srv_40",
+     "x": 872,
+     "y": 895,
+     "width": 386,
+     "height": 219,
+     "markX": 192,
+     "markY": 97,
+     "nodes": [
+      25587
+     ]
+    },
+    {
+     "id": "_srv_41",
+     "x": 1102,
+     "y": 778,
+     "width": 466,
+     "height": 282,
+     "markX": 212,
+     "markY": 105,
+     "nodes": [
+      25575,
+      25585
+     ]
+    },
+    {
+     "id": "_srv_42",
+     "x": 1311,
+     "y": 910,
+     "width": 412,
+     "height": 226,
+     "markX": 217,
+     "markY": 97,
+     "nodes": [
+      25581
+     ]
+    },
+    {
+     "id": "_srv_43",
+     "x": 1658,
+     "y": 913,
+     "width": 354,
+     "height": 260,
+     "markX": 162,
+     "markY": 94,
+     "nodes": [
+      25801
+     ]
+    },
+    {
+     "id": "_srv_44",
+     "x": -20,
+     "y": 1304,
+     "width": 254,
+     "height": 294,
+     "markX": 148,
+     "markY": 133,
+     "nodes": [
+      25671
+     ]
+    },
+    {
+     "id": "_srv_45",
+     "x": 203,
+     "y": 1258,
+     "width": 466,
+     "height": 422,
+     "markX": 214,
+     "markY": 176,
+     "nodes": [
+      25667,
+      29776
+     ]
+    },
+    {
+     "id": "_srv_46",
+     "x": 393,
+     "y": 1274,
+     "width": 430,
+     "height": 394,
+     "markX": 195,
+     "markY": 178,
+     "nodes": [
+      25536,
+      25679
+     ]
+    },
+    {
+     "id": "_srv_47",
+     "x": 615,
+     "y": 1185,
+     "width": 362,
+     "height": 264,
+     "markX": 181,
+     "markY": 114,
+     "nodes": [
+      25528,
+      25539
+     ]
+    },
+    {
+     "id": "_srv_48",
+     "x": 749,
+     "y": 1049,
+     "width": 416,
+     "height": 282,
+     "markX": 201,
+     "markY": 109,
+     "nodes": [
+      25526,
+      25591
+     ]
+    },
+    {
+     "id": "_srv_49",
+     "x": 1179,
+     "y": 1048,
+     "width": 472,
+     "height": 404,
+     "markX": 259,
+     "markY": 168,
+     "nodes": [
+      25593,
+      25601
+     ]
+    },
+    {
+     "id": "_srv_5",
+     "x": 37,
+     "y": 235,
+     "width": 218,
+     "height": 220,
+     "markX": 101,
+     "markY": 53,
+     "nodes": [
+      25917
+     ]
+    },
+    {
+     "id": "_srv_50",
+     "x": 1566,
+     "y": 1098,
+     "width": 621,
+     "height": 304,
+     "markX": 291,
+     "markY": 163,
+     "nodes": [
+      25860
+     ]
+    },
+    {
+     "id": "_srv_51",
+     "x": 2164,
+     "y": 1052,
+     "width": 336,
+     "height": 390,
+     "markX": 185,
+     "markY": 143,
+     "nodes": [
+      25851
+     ]
+    },
+    {
+     "id": "_srv_52",
+     "x": -20,
+     "y": 1641,
+     "width": 244,
+     "height": 358,
+     "markX": 116,
+     "markY": 54,
+     "nodes": [
+      25965
+     ]
+    },
+    {
+     "id": "_srv_53",
+     "x": 120,
+     "y": 1670,
+     "width": 180,
+     "height": 194,
+     "markX": 81,
+     "markY": 43,
+     "nodes": [
+      25959
+     ]
+    },
+    {
+     "id": "_srv_54",
+     "x": 204,
+     "y": 1591,
+     "width": 242,
+     "height": 304,
+     "markX": 114,
+     "markY": 80,
+     "nodes": [
+      25661,
+      25958
+     ]
+    },
+    {
+     "id": "_srv_55",
+     "x": 0,
+     "y": 1846,
+     "width": 160,
+     "height": 240,
+     "markX": 66,
+     "markY": 68,
+     "nodes": [
+      25969
+     ]
+    },
+    {
+     "id": "_srv_56",
+     "x": 325,
+     "y": 1807,
+     "width": 182,
+     "height": 189,
+     "markX": 91,
+     "markY": 5,
+     "nodes": [
+      25972
+     ]
+    },
+    {
+     "id": "_srv_57",
+     "x": 572,
+     "y": 1573,
+     "width": 344,
+     "height": 276,
+     "markX": 153,
+     "markY": 68,
+     "nodes": [
+      25653
+     ]
+    },
+    {
+     "id": "_srv_58",
+     "x": 638,
+     "y": 1431,
+     "width": 474,
+     "height": 268,
+     "markX": 222,
+     "markY": 118,
+     "nodes": [
+      25547,
+      25681
+     ]
+    },
+    {
+     "id": "_srv_59",
+     "x": 829,
+     "y": 1246,
+     "width": 270,
+     "height": 244,
+     "markX": 134,
+     "markY": 58,
+     "nodes": [
+      25543
+     ]
+    },
+    {
+     "id": "_srv_6",
+     "x": 602,
+     "y": 7,
+     "width": 126,
+     "height": 171,
+     "markX": 63,
+     "markY": 5,
+     "nodes": [
+      25896
+     ]
+    },
+    {
+     "id": "_srv_60",
+     "x": 975,
+     "y": 1138,
+     "width": 412,
+     "height": 378,
+     "markX": 195,
+     "markY": 169,
+     "nodes": [
+      25553,
+      25597
+     ]
+    },
+    {
+     "id": "_srv_61",
+     "x": 943,
+     "y": 1435,
+     "width": 530,
+     "height": 288,
+     "markX": 250,
+     "markY": 133,
+     "nodes": [
+      25551,
+      25619,
+      27166
+     ]
+    },
+    {
+     "id": "_srv_62",
+     "x": 1363,
+     "y": 1445,
+     "width": 306,
+     "height": 278,
+     "markX": 130,
+     "markY": 103,
+     "nodes": [
+      25615,
+      25841
+     ]
+    },
+    {
+     "id": "_srv_63",
+     "x": 1549,
+     "y": 1526,
+     "width": 264,
+     "height": 212,
+     "markX": 121,
+     "markY": 38,
+     "nodes": [
+      25952
+     ]
+    },
+    {
+     "id": "_srv_64",
+     "x": 1609,
+     "y": 1284,
+     "width": 332,
+     "height": 302,
+     "markX": 158,
+     "markY": 85,
+     "nodes": [
+      25862
+     ]
+    },
+    {
+     "id": "_srv_65",
+     "x": 1901,
+     "y": 1256,
+     "width": 500,
+     "height": 386,
+     "markX": 246,
+     "markY": 170,
+     "nodes": [
+      25779,
+      25785
+     ]
+    },
+    {
+     "id": "_srv_66",
+     "x": 449,
+     "y": 1898,
+     "width": 338,
+     "height": 262,
+     "markX": 170,
+     "markY": 60,
+     "nodes": [
+      25955
+     ]
+    },
+    {
+     "id": "_srv_67",
+     "x": 764,
+     "y": 1835,
+     "width": 336,
+     "height": 203,
+     "markX": 162,
+     "markY": 39,
+     "nodes": [
+      25645
+     ]
+    },
+    {
+     "id": "_srv_68",
+     "x": 845,
+     "y": 1622,
+     "width": 372,
+     "height": 258,
+     "markX": 177,
+     "markY": 52,
+     "nodes": [
+      25641
+     ]
+    },
+    {
+     "id": "_srv_69",
+     "x": 1036,
+     "y": 1676,
+     "width": 330,
+     "height": 344,
+     "markX": 160,
+     "markY": 156,
+     "nodes": [
+      25631,
+      25637
+     ]
+    },
+    {
+     "id": "_srv_7",
+     "x": 664,
+     "y": 109,
+     "width": 312,
+     "height": 274,
+     "markX": 149,
+     "markY": 51,
+     "nodes": [
+      25348
+     ]
+    },
+    {
+     "id": "_srv_70",
+     "x": 1275,
+     "y": 1587,
+     "width": 290,
+     "height": 288,
+     "markX": 133,
+     "markY": 129,
+     "nodes": [
+      25617,
+      25623
+     ]
+    },
+    {
+     "id": "_srv_71",
+     "x": 1438,
+     "y": 1664,
+     "width": 342,
+     "height": 272,
+     "markX": 168,
+     "markY": 51,
+     "nodes": [
+      25774
+     ]
+    },
+    {
+     "id": "_srv_72",
+     "x": 1216,
+     "y": 1749,
+     "width": 426,
+     "height": 340,
+     "markX": 225,
+     "markY": 196,
+     "nodes": [
+      25771
+     ]
+    },
+    {
+     "id": "_srv_73",
+     "x": 1630,
+     "y": 1826,
+     "width": 426,
+     "height": 340,
+     "markX": 228,
+     "markY": 183,
+     "nodes": [
+      25768
+     ]
+    },
+    {
+     "id": "_srv_74",
+     "x": 1964,
+     "y": 1727,
+     "width": 184,
+     "height": 208,
+     "markX": 91,
+     "markY": 52,
+     "nodes": [
+      25939
+     ]
+    },
+    {
+     "id": "_srv_75",
+     "x": 2034,
+     "y": 1517,
+     "width": 218,
+     "height": 334,
+     "markX": 107,
+     "markY": 94,
+     "nodes": [
+      25765,
+      25930
+     ]
+    },
+    {
+     "id": "_srv_76",
+     "x": 2219,
+     "y": 1582,
+     "width": 121,
+     "height": 216,
+     "markX": 63,
+     "markY": 46,
+     "nodes": [
+      25933
+     ]
+    },
+    {
+     "id": "_srv_77",
+     "x": 2262,
+     "y": 1594,
+     "width": 222,
+     "height": 330,
+     "markX": 113,
+     "markY": 46,
+     "nodes": [
+      29809
+     ]
+    },
+    {
+     "id": "_srv_78",
+     "x": 2299,
+     "y": 1794,
+     "width": 184,
+     "height": 320,
+     "markX": 87,
+     "markY": 66,
+     "nodes": [
+      25945
+     ]
+    },
+    {
+     "id": "_srv_79",
+     "x": 785,
+     "y": 2010,
+     "width": 291,
+     "height": 152,
+     "markX": 135,
+     "markY": 54,
+     "nodes": [
+      25698
+     ]
+    },
+    {
+     "id": "_srv_8",
+     "x": 804,
+     "y": -2,
+     "width": 346,
+     "height": 184,
+     "markX": 159,
+     "markY": 70,
+     "nodes": [
+      25360,
+      25366
+     ]
+    },
+    {
+     "id": "_srv_80",
+     "x": 1156,
+     "y": 2045,
+     "width": 208,
+     "height": 114,
+     "markX": 98,
+     "markY": 29,
+     "nodes": [
+      27155
+     ]
+    },
+    {
+     "id": "_srv_81",
+     "x": 1290,
+     "y": 149,
+     "width": 286,
+     "height": 256,
+     "markX": 133,
+     "markY": 85,
+     "nodes": [
+      25382
+     ]
+    },
+    {
+     "id": "_srv_82",
+     "x": 888,
+     "y": 1912,
+     "width": 516,
+     "height": 248,
+     "markX": 247,
+     "markY": 161,
+     "nodes": [
+      27153
+     ]
+    },
+    {
+     "id": "_srv_9",
+     "x": 897,
+     "y": 140,
+     "width": 426,
+     "height": 386,
+     "markX": 211,
+     "markY": 153,
+     "nodes": [
+      25909
+     ]
+    }
+   ],
+   "map_size": [
+    2500,
+    2166
+   ]
+  }
+ }
+}
