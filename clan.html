@@ -25,7 +25,8 @@
     <h1>Клановая страница</h1>
     <p class="note">Введите свой игровой ник и пароль, который дал админ клана. Метки ставятся от имени ника.</p>
     <label>Игровой ник<input id="nick" autocomplete="nickname" maxlength="24" required></label>
-    <label>Пароль<input id="code" type="password" autocomplete="current-password" required></label>
+    <label id="codeLabel">Пароль<input id="code" type="password" autocomplete="current-password" required></label>
+    <p class="note open-note" id="openNote" hidden>Сейчас пароли выключены: достаточно ника. Админы вводят свой пароль.</p>
     <button type="submit" class="primary" id="loginBtn">Войти</button>
     <p class="error" id="loginError" role="alert"></p>
   </form>
@@ -69,21 +70,27 @@
     <div class="table-wrap"><table class="members"><thead><tr><th>Ник</th><th>Доступ</th><th>Id</th><th>Был</th><th></th></tr></thead>
       <tbody id="members"></tbody></table></div>
   </section>
-  <section id="ownerTools" hidden>
-    <h3>Пароли</h3>
+  <section>
+    <h3>Вход без пароля</h3>
+    <div class="row"><span class="note" id="openState"></span><button type="button" id="openToggle"></button></div>
+  </section>
+  <section>
+    <h3>Гостевой пароль</h3>
+    <p class="note">Только смотреть. Действует час, потом гостей выкидывает. Новый пароль заменяет старый.</p>
+    <form class="row" id="guestForm">
+      <input id="guestCode" placeholder="Пусто — 4 случайные цифры" maxlength="32" autocomplete="off">
+      <button type="submit">Включить на час</button>
+      <button type="button" class="danger" id="guestOff" hidden>Выключить сейчас</button>
+    </form>
+    <p class="note" id="guestOut"></p>
+  </section>
+  <section>
+    <h3>Пароли уровней</h3>
     <form class="row" id="codeForm">
-      <select id="codeRole">
-        <option value="viewer">Смотреть</option>
-        <option value="marker">Ставить метки</option>
-        <option value="admin">Админ</option>
-        <option value="owner">Главный админ</option>
-      </select>
+      <select id="codeRole"></select>
       <input id="codePass" placeholder="Новый пароль (от 6 символов)" minlength="6" required>
       <button type="submit">Сменить</button>
     </form>
-    <h3>Гостевой пароль</h3>
-    <p class="note">Действует час, только смотреть. Показывается один раз.</p>
-    <div class="row"><button type="button" id="guestBtn">Создать на час</button><output id="guestOut"></output></div>
   </section>
 </dialog>
 

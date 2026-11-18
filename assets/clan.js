@@ -3,17 +3,15 @@
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
-const KINDS = {
-  mine: ['Ш', 'Шахта, рудник, прииск'], quarry: ['К', 'Каменоломня'], sawmill: ['Л', 'Лесопилка'],
-  farm: ['Ф', 'Ферма'], source: ['И', 'Источник'], other: ['•', 'Точка'],
-};
 const ROLES = { guest: 'гость', viewer: 'смотрит', marker: 'ставит метки', admin: 'админ', owner: 'главный админ' };
 const RANK = { guest: 0, viewer: 1, marker: 2, admin: 3, owner: 4 };
 const ERRORS = {
   bad_code: 'Неверный пароль', nick_taken: 'Этот ник уже занят', banned: 'Доступ заблокирован',
   bad_nick: 'Ник — от 2 до 24 символов', forbidden: 'Недостаточно прав', not_found: 'Игрок не найден',
   self: 'Нельзя применить к себе', short_password: 'Пароль — минимум 6 символов', not_signed_in: 'Нет сессии, обновите страницу',
+  short_guest: 'Гостевой пароль — от 4 символов', same_as_role: 'Этот пароль уже занят другим уровнем',
 };
+const CODE_ROLES = { viewer: 'Смотреть', marker: 'Ставить метки', admin: 'Админ', owner: 'Главный админ' };
 
 const state = { sb: null, me: null, data: null, map: null, marks: [], selected: null, mv: null, reloadTimer: null };
 
@@ -87,9 +85,35 @@ async function checkMe() {
 
 function closeFor(me) {
   stopLive();
+  const wasOpen = state.wasOpen;
+  state.wasOpen = false;
   if (me?.banned) showGate('<h1>Доступ заблокирован</h1><p class="note">Обратитесь к админу клана.</p>');
   else if (me?.joined_as === 'guest') showLogin('Гостевой доступ закончился. Введите новый пароль.');
+  else if (wasOpen) showLogin('Пароли снова включены. Введите пароль, чтобы продолжить.');
   else showLogin();
+}
+
+// Passwords on or off (the admins' switch): the sign-in form follows it; when they come back on,
+// those who came in by the nick alone are out at once.
+async function loadSettings() {
+  const { data } = await state.sb.from('clan_settings').select('open').maybeSingle();
+  state.open = Boolean(data?.open);
+  renderLoginMode();
+}
+
+function renderLoginMode() {
+  $('codeLabel').firstChild.textContent = state.open ? 'Пароль (не нужен, пароли выключены)' : 'Пароль';
+  $('code').required = !state.open;
+  $('openNote').hidden = !state.open;
+}
+
+function watchSettings() {
+  state.sb.channel('clan-settings')
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'clan_settings' }, async () => {
+      await loadSettings();
+      if (state.channel) await checkMe();
+    })
+    .subscribe();
 }
 
 /* ---------- The page ---------- */
@@ -111,7 +135,12 @@ async function enter() {
 
 function renderWho() {
   const me = state.me;
-  const guest = me.role === 'guest' && me.guest_until ? ` до ${clock(me.guest_until)}` : '';
+  clearTimeout(state.guestTimer);
+  if (me.role === 'guest' && me.guest_until) {
+    state.guestTimer = setTimeout(checkMe, Math.max(1000, new Date(me.guest_until) - Date.now() + 1500));
+  }
+  const guest = me.role === 'guest' && me.guest_until ? ` до ${clock(me.guest_until)}` : me.via_open ? ', без пароля' : '';
+  state.wasOpen = Boolean(me.via_open);
   $('whoText').innerHTML = `<b>${esc(me.nick)}</b> <span class="note">${ROLES[me.role]}${guest}</span>`;
   $('adminOpen').hidden = !can('admin');
   $('clearAll').hidden = !can('admin');
@@ -144,21 +173,39 @@ function drawPoint(g, p) {
   const el = state.mv.el;
   const here = marksAt(p.id);
   const mine = here.some(m => m.user_id === state.me?.id);
-  g.setAttribute('class', `mk pt k-${p.kind}${here.length ? ' marked' : ''}${mine ? ' mine' : ''}${state.selected === p.id ? ' on' : ''}`);
-  el('circle', { class: 'ring', r: 15 }, g);
-  el('circle', { class: 'dot', r: 11 }, g);
-  el('text', {}, g).textContent = KINDS[p.kind][0];
+  // Grey: nobody's there; yellow: marked, the nicks beside it.
+  g.setAttribute('class', `mk pt${here.length ? ' marked' : ''}${mine ? ' mine' : ''}${state.selected === p.id ? ' on' : ''}`);
+  el('circle', { class: 'ring', r: 19 }, g);
+  el('circle', { class: 'dot', r: 14 }, g);
   if (here.length) {
     const names = here.map(m => m.nick);
     const label = names.length > 2 ? `${names.slice(0, 2).join(', ')} +${names.length - 2}` : names.join(', ');
-    el('text', { class: 'tag', x: 17, y: 0 }, g).textContent = label;
+    el('text', { class: 'tag', x: 20, y: 0 }, g).textContent = label;
   }
 }
 
 function renderLegend() {
-  $('legend').innerHTML = `<div class="keys">${Object.entries(KINDS).filter(([k]) => k !== 'other')
-    .map(([k, [letter, label]]) => `<span><i class="kd k-${k}">${letter}</i>${label}</span>`).join('')}
-    <span><i class="kd marked"></i>есть метка</span></div>`;
+  $('legend').innerHTML = `<div class="keys"><span><i class="kd"></i>свободна</span><span><i class="kd marked"></i>отмечена</span>
+    ${can('marker') ? '<span>клик по точке — поставить или снять свою метку</span>' : ''}</div>`;
+}
+
+// A click on a point: the caller's mark goes there, or off when it is already there. Shown at once,
+// the database confirms (or the marks are read again).
+async function toggleMark(p) {
+  const me = state.me;
+  const mine = state.marks.find(m => m.user_id === me.id);
+  const off = mine && mine.point === p.id;
+  state.marks = state.marks.filter(m => m.user_id !== me.id);
+  if (!off) state.marks.push({ user_id: me.id, point: p.id, nick: me.nick, created_at: new Date().toISOString() });
+  redrawPoints();
+  renderPoint();
+  renderMarks();
+  await act(() => off ? rpc('clan_unmark', {}) : rpc('clan_mark', { p_point: p.id }));
+}
+
+function pick(p) {
+  select(p.id);
+  if (can('marker')) toggleMark(p);
 }
 
 function redrawPoints() {
@@ -188,18 +235,13 @@ function renderPoint() {
   $('pointPane').hidden = !p;
   if (!p) return;
   const here = marksAt(p.id);
-  const mine = state.marks.find(m => m.user_id === state.me.id);
-  const mineHere = mine && mine.point === p.id;
-  let actions = '';
-  if (can('marker')) {
-    actions = mineHere
-      ? '<button type="button" class="wide" data-act="unmark-me">Снять мою метку</button>'
-      : `<button type="button" class="primary wide" data-act="mark">Поставить метку</button>
-         ${mine ? `<p class="note">Ваша метка переедет сюда с «${esc(pointName(mine.point).name)}».</p>` : ''}`;
-  }
+  const mineHere = here.some(m => m.user_id === state.me.id);
+  const actions = can('marker')
+    ? `<p class="note">${mineHere ? 'Ваша метка здесь. Клик по точке ещё раз — снять.' : 'Клик по точке — поставить сюда свою метку.'}</p>`
+    : '';
   $('pointPane').innerHTML = `
     <div class="pane-head"><h2>${esc(p.name)}</h2><button type="button" class="x" data-act="close" aria-label="Закрыть">✕</button></div>
-    <div class="note">${KINDS[p.kind][1]} · ${esc(state.map.name)}</div>
+    <div class="note">${esc(state.map.name)}</div>
     ${p.description ? `<p class="desc">${esc(p.description)}</p>` : ''}
     <h3>Метки</h3>
     ${here.length ? `<ul class="marks">${here.map(markRow).join('')}</ul>` : '<p class="note">Здесь никого.</p>'}
@@ -281,9 +323,31 @@ function confirmAsk(text) {
 async function openAdmin() {
   $('adminError').textContent = '';
   $('guestOut').textContent = '';
-  $('ownerTools').hidden = !can('owner');
+  $('codeRole').innerHTML = Object.entries(CODE_ROLES)
+    .filter(([r]) => can('owner') || RANK[r] < RANK[state.me.role])
+    .map(([r, label]) => `<option value="${r}">${label}</option>`).join('');
+  $('guestCode').value = '';
+  renderOpenSwitch();
+  await guestStatus();
   await loadMembers();
   $('adminDlg').showModal();
+}
+
+function renderOpenSwitch() {
+  $('openState').textContent = state.open
+    ? 'Пароли выключены: любой входит по нику и ставит метки. Админы входят по паролю.'
+    : 'Пароли включены.';
+  $('openToggle').textContent = state.open ? 'Включить пароли' : 'Выключить пароли';
+}
+
+async function guestStatus() {
+  try {
+    const g = await rpc('clan_guest_status');
+    $('guestOut').innerHTML = g?.expires_at
+      ? `Гостевой пароль включён до ${clock(g.expires_at)}${g.by ? ` (${esc(g.by)})` : ''}`
+      : 'Гостевой пароль выключен.';
+    $('guestOff').hidden = !g?.expires_at;
+  } catch { /* shown by the caller */ }
 }
 
 async function loadMembers() {
@@ -321,14 +385,12 @@ async function adminDo(fn) {
 function setup() {
   $('loginForm').addEventListener('submit', login);
   window.addEventListener('hashchange', () => state.map && route());
-  state.mv = createMapView($('map'), { onPick: p => select(p.id), buttons: $('clan') });
+  state.mv = createMapView($('map'), { onPick: pick, buttons: $('clan') });
 
   document.addEventListener('click', async e => {
     const t = e.target.closest('button, li[data-point]');
     if (!t) return;
     if (t.dataset.act === 'close') select(null);
-    else if (t.dataset.act === 'mark') act(() => rpc('clan_mark', { p_point: state.selected }));
-    else if (t.dataset.act === 'unmark-me') act(() => rpc('clan_unmark', {}));
     else if (t.dataset.unmark) {
       e.stopPropagation();
       act(() => rpc('clan_unmark', { p_user: t.dataset.unmark }));
@@ -369,9 +431,30 @@ function setup() {
       $('adminError').textContent = 'Пароль сменён.';
     });
   });
-  $('guestBtn').addEventListener('click', () => adminDo(async () => {
-    const g = await rpc('clan_guest_code');
-    $('guestOut').innerHTML = `<b class="code">${esc(g.code)}</b> <span class="note">до ${clock(g.expires_at)}</span>`;
+  $('guestForm').addEventListener('submit', e => {
+    e.preventDefault();
+    adminDo(async () => {
+      const g = await rpc('clan_guest_code', { p_code: $('guestCode').value || null });
+      $('guestCode').value = '';
+      $('guestOut').innerHTML = `Пароль <b class="code">${esc(g.code)}</b> действует до ${clock(g.expires_at)}`;
+    });
+  });
+  $('openToggle').addEventListener('click', async () => {
+    const turnOn = state.open;
+    const ask = turnOn
+      ? 'Включить пароли? Все, кто вошёл без пароля, сразу будут выкинуты, их метки снимутся.'
+      : 'Выключить пароли? Любой, кто знает адрес страницы, сможет войти по одному нику и ставить метки.';
+    if (!await confirmAsk(ask)) return;
+    adminDo(async () => {
+      const r = await rpc('clan_set_open', { p_open: !turnOn });
+      await loadSettings();
+      renderOpenSwitch();
+      if (turnOn && r?.removed) $('adminError').textContent = `Выкинуто вошедших без пароля: ${r.removed}.`;
+    });
+  });
+  $('guestOff').addEventListener('click', () => adminDo(async () => {
+    await rpc('clan_guest_off');
+    await guestStatus();
   }));
   $('logout').addEventListener('click', async () => {
     if (!await confirmAsk('Выйти? Ваша метка снимется, а ник освободится.')) return;
@@ -409,6 +492,8 @@ async function start() {
     showGate(`<h1>Не удалось подключиться</h1><p class="note">${esc(errorText(err))}</p>`);
     return;
   }
+  await loadSettings();
+  watchSettings();
   if (state.me?.role) await enter();
   else closeFor(state.me);
 }

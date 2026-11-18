@@ -1,11 +1,6 @@
 /* The clan page: on top of style.css */
 :root {
-  --k-mine: #e3b341;
-  --k-quarry: #b9b2a6;
-  --k-sawmill: #c7884a;
-  --k-farm: #7fc65e;
-  --k-source: #6fb2f0;
-  --mark: #ffe08a;
+  --mark: #f5c518;
   --mine-mark: #8ef08a;
 }
 
@@ -49,50 +44,39 @@ button.x:hover { color: var(--text); }
   font-size: 15px;
 }
 .gate-card .primary { padding: 9px; }
+.open-note { padding: 8px 10px; border: 1px solid #3f7a36; border-radius: 6px; background: #1d2e17; color: #b9eaa9; }
+.row .note { flex: 1; }
 .error { min-height: 1.2em; margin: 0; color: #f2b3a6; font-size: 14px; }
 
-/* Map markers */
-.mk.pt .dot { stroke: #120e08; stroke-width: 2.5; fill: #8d877c; }
-.mk.pt text { font-size: 11px; font-weight: 700; fill: #120e08; text-anchor: middle; dominant-baseline: central; pointer-events: none; }
-.mk.k-mine .dot { fill: var(--k-mine); }
-.mk.k-quarry .dot { fill: var(--k-quarry); }
-.mk.k-sawmill .dot { fill: var(--k-sawmill); }
-.mk.k-farm .dot { fill: var(--k-farm); }
-.mk.k-source .dot { fill: var(--k-source); }
-.mk.pt.marked .ring { opacity: 1; stroke: var(--mark); stroke-width: 4; }
-.mk.pt.mine .ring { stroke: var(--mine-mark); }
-.mk.pt.on .ring { opacity: 1; stroke: #fff; stroke-dasharray: 4 3; }
+/* Map markers: grey free, yellow marked (the nicks beside) */
+.mk.pt .dot { fill: #9b958a; stroke: #120e08; stroke-width: 3; }
+.mk.pt.marked .dot { fill: var(--mark); }
+.mk.pt .ring { fill: none; stroke: #fff; stroke-width: 2.5; stroke-dasharray: 4 3; opacity: 0; }
+.mk.pt.on .ring, .mk.pt:hover .ring { opacity: 1; }
 .mk.pt text.tag {
-  font-size: 13px;
+  text-anchor: start;
+  font-size: 14px;
   font-weight: 700;
   fill: var(--mark);
-  text-anchor: start;
+  dominant-baseline: central;
   paint-order: stroke;
   stroke: #120e08;
   stroke-width: 4px;
   stroke-linejoin: round;
+  pointer-events: none;
 }
 .mk.pt.mine text.tag { fill: var(--mine-mark); }
 .kd {
-  display: inline-grid;
-  place-items: center;
-  width: 16px;
-  height: 16px;
+  display: inline-block;
+  width: 14px;
+  height: 14px;
   margin-right: 5px;
   border-radius: 50%;
-  border: 1.5px solid #120e08;
-  font-size: 9px;
-  font-style: normal;
-  font-weight: 700;
-  color: #120e08;
+  border: 2px solid #120e08;
+  background: #9b958a;
   vertical-align: -3px;
 }
-.kd.k-mine { background: var(--k-mine); }
-.kd.k-quarry { background: var(--k-quarry); }
-.kd.k-sawmill { background: var(--k-sawmill); }
-.kd.k-farm { background: var(--k-farm); }
-.kd.k-source { background: var(--k-source); }
-.kd.marked { background: transparent; border: 3px solid var(--mark); }
+.kd.marked { background: var(--mark); }
 
 /* Side panes */
 .clan-page .side { overflow-y: auto; }
